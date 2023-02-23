@@ -52,4 +52,9 @@ public class TabManager : MonoBehaviour
         else
             tab.SetActive(false);
     }
+
+    void dragTab()
+    {
+
+    }
 }
