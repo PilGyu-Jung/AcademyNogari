@@ -14,6 +14,7 @@ public class Entity : MonoBehaviour
     public float speed_Run;
 
     public float damage;
+    public float attackBetTime;
 
     public bool isdead;
     public bool isattack;

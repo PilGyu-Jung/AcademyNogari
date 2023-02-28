@@ -18,7 +18,6 @@ public class monster : Entity
     [Range(1.0f, 10.0f)]
     public float        radius_Attack;
 
-    public float        attackBetTime;
 
     Collider[]          cols;
     NavMeshAgent        monsterAgent;
