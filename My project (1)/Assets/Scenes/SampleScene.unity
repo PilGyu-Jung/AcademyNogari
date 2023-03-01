@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 317252411}
   - component: {fileID: 317252412}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Slider_SP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -511,7 +511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 83.510254, y: 95.909424}
+  m_AnchoredPosition: {x: 83.510254, y: 4}
   m_SizeDelta: {x: 190.775, y: 66.7784}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &317252412
@@ -561,7 +561,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.91
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -814,6 +814,7 @@ GameObject:
   - component: {fileID: 847943331}
   - component: {fileID: 847943330}
   - component: {fileID: 847943329}
+  - component: {fileID: 847943333}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -903,6 +904,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &847943333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847943328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121771b0a5b905b4e831690cff7fea10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 1295942613}
+  bar_SP: {fileID: 317252412}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,14 +994,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.4383711, y: 0, z: 0, w: 0.89879405}
+  m_LocalRotation: {x: 0.39391783, y: 0, z: 0, w: 0.9191457}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 37571144}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 52, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 46.397, y: 0, z: 0}
 --- !u!1 &994818660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,8 +1036,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -4.999954, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1150016808
 GameObject:
@@ -1167,8 +1182,8 @@ MonoBehaviour:
   isdead: 0
   isattack: 0
   isrun: 0
-  recovery_Stamina: 9
-  decrease_Stamina: 16
+  recovery_Stamina: 20
+  decrease_Stamina: 33
   stamina: 100
   isMove: 0
   cur_stamina: 0
