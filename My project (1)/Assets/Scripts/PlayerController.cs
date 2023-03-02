@@ -14,10 +14,16 @@ public class PlayerController : Entity
 
     public float cur_stamina;
 
+    public Collider MeleeCol;
+    public GameObject Playermodel;
+    public enum AttackType{ MELEE,PROJECTILE,HITSCAN };
+    public AttackType attackType;
+
     float origin_recovery_Stamina;
     float origin_decrease_Stamina;
 
     [SerializeField]
+    float time_a;
     float time;
     float h;
     float v;
@@ -28,6 +34,8 @@ public class PlayerController : Entity
     Plane plane;
 
     Vector3 lookPoint;
+    Vector3 moveDirection;
+    IEnumerator coroutineA;
 
     private void Awake()
     {
@@ -41,11 +49,13 @@ public class PlayerController : Entity
         cur_stamina = stamina;
         m_camera = Camera.main;
         plane = new Plane(Vector3.up, Vector3.zero + new Vector3(0, 1f, 0));
+        coroutineA = PA_MeleeAttack(attackBetTime);
     }
 
     // Update is called once per frame
     void Update()
     {
+        time_a += Time.deltaTime;
         ray = m_camera.ScreenPointToRay(Input.mousePosition);
         if(plane.Raycast(ray,out rayDistance))
         {
@@ -55,13 +65,19 @@ public class PlayerController : Entity
         InputDirection();
         InputAction();
         focusPoint();
+
+        if (isattack && time_a >= attackBetTime)
+        { // tima_a가 공격 사이시간보다 크고 isattack 이 true 가 되면 공격.
+            PlayerAttack(attackType);
+            time_a = 0f;
+        }
     }
 
     void InputDirection()
     {
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
-
+        moveDirection = (transform.forward * v + transform.right * h).normalized;
         changeRateStamina();
 
         if (h != 0 || v != 0)
@@ -71,16 +87,12 @@ public class PlayerController : Entity
 
         if(isrun && isMove && cur_stamina > 0 && !isrecoverSP)
         {
-            transform.Translate(h * speed_Run, 0, v * speed_Run, Space.World);
+            transform.Translate(moveDirection * speed_Run, Space.World);
         }
         else
         {
-            transform.Translate(h * speed_Walk, 0, v * speed_Walk, Space.World);
+            transform.Translate(moveDirection * speed_Walk, Space.World);
         }
-        //if(!isrun)
-        //    transform.Translate(h * speed_Walk, 0, v * speed_Walk,Space.World);
-        //else 
-        //    transform.Translate(h * speed_Run, 0, v * speed_Run, Space.World);
 
     }
 
@@ -137,14 +149,52 @@ public class PlayerController : Entity
     }
     void InputAction()
     {
-        isattack = Input.GetMouseButton(0);
+        isattack = Input.GetMouseButtonDown(0);
+        if (Input.GetMouseButtonUp(0))
+        {
+            StopCoroutine(coroutineA);
+        }
+        //isattack = Input.GetMouseButton(0);
+
         ///<summary>
         /// isrecover이 false 일 경우에만 leftshift가 isrun을 true로 만들어줌.
         /// </summary>
         isrun = !isrecoverSP ? Input.GetKey(KeyCode.LeftShift) : false;
     }
     void focusPoint()
-    {
-        transform.LookAt(lookPoint);
+    { // 플레이어 오브젝트는 유지하고, 모델만 마우스 포인터쪽으로 회전.
+        Playermodel.transform.LookAt(lookPoint);
     }
+
+    void PlayerAttack(AttackType type)
+    { // 공격 타입에 따라서 다른 공격 코루틴이 실행됨.
+        switch (type)
+        {
+            case AttackType.MELEE:
+                StartCoroutine(coroutineA);
+                break;
+            case AttackType.PROJECTILE:
+
+                break;
+            case AttackType.HITSCAN:
+
+                break;
+        }
+    }
+
+    IEnumerator PA_MeleeAttack(float t)
+    {
+        WaitForSeconds ws = new WaitForSeconds(t);
+        while(true)
+        {
+            Debug.Log("Player Melee Attacking!");
+            MeleeCol.enabled = true;
+            yield return new WaitForSeconds(.2f);
+            MeleeCol.enabled = false;
+            time_a = 0f;
+            yield return ws;
+        }
+    }
+ 
+    
 }
