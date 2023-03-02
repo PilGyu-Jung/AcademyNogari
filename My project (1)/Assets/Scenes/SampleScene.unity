@@ -1182,11 +1182,14 @@ MonoBehaviour:
   isdead: 0
   isattack: 0
   isrun: 0
-  recovery_Stamina: 20
-  decrease_Stamina: 33
+  recovery_Stamina: 30
+  decrease_Stamina: 50
   stamina: 100
+  time_recovery_SP: 2
   isMove: 0
+  isrecoverSP: 0
   cur_stamina: 0
+  time: 0
 --- !u!4 &1295942614
 Transform:
   m_ObjectHideFlags: 0

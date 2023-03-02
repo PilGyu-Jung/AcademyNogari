@@ -7,14 +7,17 @@ public class PlayerController : Entity
     public float recovery_Stamina;
     public float decrease_Stamina;
     public float stamina;
-    public float time_recovery_Stamina;
+    public float time_recovery_SP;
 
     public bool isMove;
+    public bool isrecoverSP;
+
     public float cur_stamina;
 
     float origin_recovery_Stamina;
     float origin_decrease_Stamina;
 
+    [SerializeField]
     float time;
     float h;
     float v;
@@ -66,7 +69,7 @@ public class PlayerController : Entity
         else
             isMove = false;
 
-        if(isrun && isMove && cur_stamina > 0)
+        if(isrun && isMove && cur_stamina > 0 && !isrecoverSP)
         {
             transform.Translate(h * speed_Run, 0, v * speed_Run, Space.World);
         }
@@ -83,33 +86,62 @@ public class PlayerController : Entity
 
     void changeRateStamina()
     {
+        // 스태미나 최대 최소일때 회복량 제한, 범위내일때 정상 회복량.
         if (cur_stamina >= stamina)
-        {
+        { // 스태미나가 최대값이상이 될시 회복량 0으로 제한.
             cur_stamina = stamina;
             recovery_Stamina = 0;
 
         }
         else if (cur_stamina <= 0)
-        {
+        { // 스태미나가 0이하로 떨어지면 isrecoverSP가 true. 감소량 0.
+            isrecoverSP = true;
             cur_stamina = 0;
             decrease_Stamina = 0;
         }
         else
-        {
+        { // 평상시에는 원래 증감값 유지.
             recovery_Stamina = origin_recovery_Stamina;
             decrease_Stamina = origin_decrease_Stamina;
         }
 
+        // shift를 누르고 움직일때 SP감소.
         if (isMove && isrun)
             cur_stamina -= Time.deltaTime * decrease_Stamina;
         else
-            cur_stamina += Time.deltaTime * recovery_Stamina;
+        { // 쉬프트를 누르지 않고 움직일때 SP회복
+            if(isrecoverSP)
+            { // isrecoverSP가 true일시 time이 올라감.
+                time += Time.deltaTime;
+
+                if(time < time_recovery_SP)
+                { // time이 회복제한시간이하면 회복량은 0.
+                    isrecoverSP = true;
+                    recovery_Stamina = 0;
+                }
+                else
+                { // time이 회복제한시간을 넘길시 원래 회복량이 되고 isrecover은 다시 false, time은 다시 0으로.
+                    isrecoverSP = false;
+                    time = 0;
+                    recovery_Stamina = origin_recovery_Stamina;
+                    cur_stamina += Time.deltaTime * recovery_Stamina;
+                }
+            }
+            else
+            { // SP가 0이하가 아니므로 원래 회복량을 유지함.
+                cur_stamina += Time.deltaTime * recovery_Stamina;
+            }
+
+        }
 
     }
     void InputAction()
     {
         isattack = Input.GetMouseButton(0);
-        isrun = Input.GetKey(KeyCode.LeftShift);
+        ///<summary>
+        /// isrecover이 false 일 경우에만 leftshift가 isrun을 true로 만들어줌.
+        /// </summary>
+        isrun = !isrecoverSP ? Input.GetKey(KeyCode.LeftShift) : false;
     }
     void focusPoint()
     {
