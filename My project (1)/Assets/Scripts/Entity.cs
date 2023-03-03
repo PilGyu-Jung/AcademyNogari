@@ -25,4 +25,9 @@ public class Entity : MonoBehaviour
         _target.hp -= damage;
         Debug.Log(this.gameObject.name + "is attacking to " + _target.name + this.damage);
     }
+
+    public void DropGold()
+    {
+
+    }
 }
