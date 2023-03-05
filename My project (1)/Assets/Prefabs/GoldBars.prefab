@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4843938346342059992}
   - component: {fileID: 4843938346332479576}
   - component: {fileID: 7217705624757643992}
+  - component: {fileID: 4804304399952886176}
   m_Layer: 8
   m_Name: GoldBars
   m_TagString: Untagged
@@ -109,11 +110,25 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4843938346341962296}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.7295653
   m_Center: {x: 0, y: -4.0103093e-16, z: -0.1151253}
+--- !u!114 &4804304399952886176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843938346341962296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548444123dc08214080d9a42b5e86c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iType: 0
+  cType: 3
 --- !u!1 &4843938346341962624
 GameObject:
   m_ObjectHideFlags: 0

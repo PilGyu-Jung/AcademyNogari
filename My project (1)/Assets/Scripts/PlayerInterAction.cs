@@ -7,29 +7,49 @@ public class PlayerInterAction : MonoBehaviour
     public int amoutHaveCoin;
     public float radius_absorb;
     public SphereCollider pickItem;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public PickObject pickObj;
+    public int getCoin;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Coin"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Coin"))
         {
-
-
+            pickObj = other.gameObject.GetComponent<PickObject>();
+            PickCoin(pickObj);
             Destroy(other.gameObject);
         }
+        //else if(other.gameObject.layer == LayerMask)
+        Debug.Log(other.gameObject.name);
+    }
+    void PickCoin(PickObject pObj)
+    {
+        switch (pObj.cType)
+        {
+            case PickObject.CoinType.C10:
+                getCoin = Random.Range(1, 10);
+                amoutHaveCoin += getCoin;
+
+                break;
+            case PickObject.CoinType.C100:
+                getCoin = Random.Range(11, 100);
+                amoutHaveCoin += getCoin;
+
+                break;
+            case PickObject.CoinType.C500:
+                getCoin = Random.Range(101, 500);
+                amoutHaveCoin += getCoin;
+
+                break;
+            case PickObject.CoinType.C1000:
+                getCoin = Random.Range(501, 1000);
+                amoutHaveCoin += getCoin;
+
+                break;
+        }
+
     }
 
-    void PickCoin(Coin coin)
+    void PickConsume(PickObject pObj)
     {
 
     }

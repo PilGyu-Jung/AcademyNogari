@@ -6,14 +6,17 @@ public class PickObject : MonoBehaviour
 {
     public enum ItemType { COIN, CONSUME, BUFF };
     public ItemType iType;
+    public enum CoinType { C10,C100,C500,C1000};
+    public CoinType cType;
 
-    PlayerController p_controller;
-    PlayerInterAction p_interaction;
+
+    //PlayerController p_controller;
+    //PlayerInterAction p_interaction;
 
     private void Start()
     {
-        p_controller = FindObjectOfType<PlayerController>();
-        p_interaction = FindObjectOfType<PlayerInterAction>();
+        //p_controller = FindObjectOfType<PlayerController>();
+        //p_interaction = FindObjectOfType<PlayerInterAction>();
     }
 
     void Pickthis()
