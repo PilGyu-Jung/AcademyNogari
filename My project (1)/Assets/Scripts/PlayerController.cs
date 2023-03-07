@@ -153,10 +153,11 @@ public class PlayerController : Entity
     }
     void InputAction()
     {
-        isattack = Input.GetMouseButtonDown(0);
+        isattack = Input.GetMouseButtonDown(0); 
         if (Input.GetMouseButtonUp(0))
         {
             StopCoroutine(coroutineA);
+            MeleeCol.enabled = false;
         }
         //isattack = Input.GetMouseButton(0);
 

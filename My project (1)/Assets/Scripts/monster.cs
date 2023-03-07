@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class monster : Entity
 {
     public bool         hasTarget;
-
     public float        distance;
 
     [Range(1.0f, 15.0f)]
@@ -23,7 +23,7 @@ public class monster : Entity
     NavMeshAgent        monsterAgent;
 
     [SerializeField]
-    LayerMask           monsterlayer;
+    LayerMask           m_targetLayer;
     [SerializeField]
     State               curState;
     [SerializeField]
@@ -33,6 +33,7 @@ public class monster : Entity
     public Transform    transform_EnemyBase;
     public Entity       targetEntity;
 
+    public Action       monsterDead;
     void DistanceChangeState(float d,bool nearTarget)
     {
         if (!nearTarget)
@@ -131,7 +132,7 @@ public class monster : Entity
         if (m_State == State.IDLE || m_State == State.CHASE)
             return;
         cols 
-            = Physics.OverlapSphere(transform.position, radius_Detect,monsterlayer);
+            = Physics.OverlapSphere(transform.position, radius_Detect,m_targetLayer);
 
         foreach(Collider col in cols)
         {
@@ -164,7 +165,7 @@ public class monster : Entity
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()   
     {
         #region attackCoroutineTest
         //if(Input.GetKeyDown(KeyCode.A))

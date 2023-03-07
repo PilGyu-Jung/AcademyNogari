@@ -17,9 +17,9 @@ public class PlayerInterAction : MonoBehaviour
             pickObj = other.gameObject.GetComponent<PickObject>();
             PickCoin(pickObj);
             Destroy(other.gameObject);
+            Debug.Log(other.gameObject.name);
+
         }
-        //else if(other.gameObject.layer == LayerMask)
-        Debug.Log(other.gameObject.name);
     }
     void PickCoin(PickObject pObj)
     {
