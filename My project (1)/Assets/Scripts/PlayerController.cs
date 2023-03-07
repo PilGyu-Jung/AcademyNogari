@@ -71,6 +71,10 @@ public class PlayerController : Entity
             PlayerAttack(attackType);
             time_a = 0f;
         }
+        //else
+        //{
+        //    StopCoroutine(coroutineA);
+        //}
     }
 
     void InputDirection()
