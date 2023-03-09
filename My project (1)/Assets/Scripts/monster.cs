@@ -6,7 +6,7 @@ using System;
 
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class monster : Entity
+public class Monster : Entity
 {
     public bool         hasTarget;
     public float        distance;

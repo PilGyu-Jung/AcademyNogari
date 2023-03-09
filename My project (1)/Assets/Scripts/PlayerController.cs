@@ -14,7 +14,7 @@ public class PlayerController : Entity
 
     public float cur_stamina;
 
-    public Collider MeleeCol;
+    public MeleeWeapon weapon_melee;
     public GameObject Playermodel;
     public enum AttackType{ MELEE,PROJECTILE,HITSCAN };
     public AttackType attackType;
@@ -157,7 +157,7 @@ public class PlayerController : Entity
         if (Input.GetMouseButtonUp(0))
         {
             StopCoroutine(coroutineA);
-            MeleeCol.enabled = false;
+            weapon_melee.attackbox.enabled = false;
         }
         //isattack = Input.GetMouseButton(0);
 
@@ -193,9 +193,9 @@ public class PlayerController : Entity
         while(true)
         {
             Debug.Log("Player Melee Attacking!");
-            MeleeCol.enabled = true;
+            weapon_melee.attackbox.enabled = true;
             yield return new WaitForSeconds(.2f);
-            MeleeCol.enabled = false;
+            weapon_melee.attackbox.enabled = false;
             time_a = 0f;
             yield return ws;
         }

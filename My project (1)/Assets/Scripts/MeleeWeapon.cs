@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeWeapon : MonoBehaviour
+public class MeleeWeapon : Weapon
 {
     public PlayerController pController;
+    public BoxCollider attackbox;
     public LayerMask colMask;
-    public Entity target;
 
     private void Start()
     {
@@ -17,10 +17,11 @@ public class MeleeWeapon : MonoBehaviour
         if (other.gameObject.layer == colMask)
         {
             target = other.gameObject.GetComponent<Entity>();
-            if(target != null)
+            Debug.Log("MeleeWeaponCollider! :" + target.gameObject.name);
+
+            if (target != null)
             {
                 pController.ApplyDamage(target,pController.damage);
-                Debug.Log("asdklnmaskdnaskd"+target.gameObject.name);
 
             }
         }
