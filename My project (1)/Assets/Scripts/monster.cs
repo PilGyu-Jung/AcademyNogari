@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using System;
 
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -33,7 +32,6 @@ public class Monster : Entity
     public Transform    transform_EnemyBase;
     public Entity       targetEntity;
 
-    public Action       monsterDead;
     void DistanceChangeState(float d,bool nearTarget)
     {
         if (!nearTarget)

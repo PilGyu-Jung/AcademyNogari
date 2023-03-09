@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Entity : MonoBehaviour
 {
     public enum Team { A,B};
     public enum State { IDLE, DETECT, CHASE, ATTACK, DEAD };
 
+    public Action OnDead;
     public Weapon hitWeapon;
     public Entity hitEntity;
     GameObject findParent;
-
+    RandomLootingObject randomLtObj;
     //public float maxHP;
     //public float hp { 
     //    get 
@@ -99,8 +101,5 @@ public class Entity : MonoBehaviour
         if (h_weapon != null)
             this.hp -= h_weapon.weapon_damage;
     }
-    public void DropGold()
-    {
 
-    }
 }
