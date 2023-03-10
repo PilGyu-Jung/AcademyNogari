@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\Editor_monster.cs" />
+    <Compile Include="Assets\Editor\Editor_dropObj.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
