@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class RandomLootingObject : MonoBehaviour/*, ISerializationCallbackReceiver*/
+public class RandomLootingObject : MonoBehaviour
 {
     public List <GameObject> dropArray_Obj;
     public List <int>        dropArray_Rate;
+    [SerializeField]
+    private SerializableDictionary<int, GameObject> dic_dropCoinNum;
     public int          targetnum;
-    public int          num_drop;
+    public int          num_Itemdrop;
     public float        range_drop;
 
     Items chooseItem;
     Entity dropTarget;
     public GameObject lootSelectionObj;
     public List<string> list_Item = new List<string>();
+    public List<string> list_coin = new List<string>();
     //[SerializeField]
     //public Dictionary<GameObject, int> Dic_dropObjRate;
     int sumRate;
@@ -23,9 +26,11 @@ public class RandomLootingObject : MonoBehaviour/*, ISerializationCallbackReceiv
     {
         //dropTarget.OnDead += (dropObjects, dropRates) => DropItems(dropObjects, dropRates);
         AddItemList(dropArray_Obj, dropArray_Rate);
+        AddCoinList(dic_dropCoinNum);
         RandomLooting(list_Item, sumRate);
         RandomPosDrop(range_drop, lootSelectionObj);
     }
+
 
     void AddItemList(List<GameObject> d_Objects, List<int> d_Rates)
     {
@@ -46,6 +51,18 @@ public class RandomLootingObject : MonoBehaviour/*, ISerializationCallbackReceiv
             sumRate += n;
         }
         //targetnum = Random.Range(0, sumRate);
+    }
+
+    void AddCoinList(SerializableDictionary<int, GameObject> SD_coin)
+    {
+        for (int i = 0; i < SD_coin.Count; i++)
+        {
+            for (int j = 0; j < SD_coin.Keys.ToList()[i]; j++)
+            {
+                //list_coin.Add(SD_coin.Values.ToList());
+                list_coin.Add(SD_coin.Values.ToList()[i].name);
+            }
+        }
     }
 
     void RandomLooting(List<string> dropItemlist,int sum)
@@ -71,13 +88,4 @@ public class RandomLootingObject : MonoBehaviour/*, ISerializationCallbackReceiv
         Instantiate(obj, (transform.position + randPos), Quaternion.identity);
     }
 
-    //void ISerializationCallbackReceiver.OnBeforeSerialize()
-    //{
-    //    throw new System.NotImplementedException();
-    //}
-
-    //void ISerializationCallbackReceiver.OnAfterDeserialize()
-    //{
-    //    throw new System.NotImplementedException();
-    //}
 }

@@ -511,8 +511,14 @@ MonoBehaviour:
   - {fileID: 1721580416}
   - {fileID: 1691887618}
   dropArray_Rate: 030000000200000001000000
+  dic_dropCoinNum:
+    array:
+    - Key: 3
+      Value: {fileID: 5355567538540339206, guid: e66fd447cf6c08740ba4bfe31a75b526, type: 3}
+    - Key: 1
+      Value: {fileID: 328166325672742693, guid: 4324aa498ab51c44e8147b6443ad498e, type: 3}
   targetnum: 0
-  num_drop: 0
+  num_Itemdrop: 0
   range_drop: 1.43
   lootSelectionObj: {fileID: 0}
   list_Item: []
