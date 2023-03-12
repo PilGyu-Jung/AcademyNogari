@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6274059280665103320}
   - component: {fileID: 5881894145553320341}
-  - component: {fileID: 8906227207146215372}
+  - component: {fileID: 2872262274217893578}
   m_Layer: 8
   m_Name: GoldBar
   m_TagString: Untagged
@@ -47,7 +47,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.8710324
   m_Center: {x: -0.76, y: 0.72, z: -0.67}
---- !u!114 &8906227207146215372
+--- !u!114 &2872262274217893578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,11 +56,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6274059280665103321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 548444123dc08214080d9a42b5e86c16, type: 3}
+  m_Script: {fileID: 11500000, guid: d4b2d6bded0674244b6117265973b86d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   iType: 0
-  cType: 2
+  cType: 3
 --- !u!1 &6274059281132292509
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PickObject : MonoBehaviour
 {
-    public enum ItemType { COIN, CONSUME, BUFF };
+    public enum ItemType { COIN, ITEM };
     public ItemType iType;
-    public enum CoinType { C10,C100,C500,C1000};
-    public CoinType cType;
 
 
     //PlayerController p_controller;
@@ -26,10 +24,7 @@ public class PickObject : MonoBehaviour
             case ItemType.COIN:
                 //CoinManager.Instance.
                 break;
-            case ItemType.CONSUME:
-
-                break;
-            case ItemType.BUFF:
+            case ItemType.ITEM:
 
                 break;
         }

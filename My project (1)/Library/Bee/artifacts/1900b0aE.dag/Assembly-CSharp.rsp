@@ -353,6 +353,8 @@
 "Assets/Scripts/Items.cs"
 "Assets/Scripts/MeleeWeapon.cs"
 "Assets/Scripts/Monster.cs"
+"Assets/Scripts/PickCoin.cs"
+"Assets/Scripts/PickItem.cs"
 "Assets/Scripts/PickObject.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/PlayerInterAction.cs"
