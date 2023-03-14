@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class Entity : MonoBehaviour
 {
     public enum Team { A,B};
     public enum State { IDLE, DETECT, CHASE, ATTACK, DEAD };
 
-    public Action OnDead;
     public Weapon hitWeapon;
     public Entity hitEntity;
     GameObject findParent;
@@ -102,4 +100,8 @@ public class Entity : MonoBehaviour
             this.hp -= h_weapon.weapon_damage;
     }
 
+    virtual public void OnDead(bool d)
+    {
+
+    }
 }

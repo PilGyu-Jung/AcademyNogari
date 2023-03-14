@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using System;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Monster : Entity
@@ -20,6 +20,8 @@ public class Monster : Entity
 
     Collider[]          cols;
     NavMeshAgent        monsterAgent;
+    Action              m_dead;
+    RandomLootingObject objRL;
 
     [SerializeField]
     LayerMask           m_targetLayer;
@@ -158,8 +160,10 @@ public class Monster : Entity
         isdead = false;
         hasTarget = false;
         monsterAgent = GetComponent<NavMeshAgent>();
-        StartCoroutine(UpdatePath());
+        objRL = GetComponent<RandomLootingObject>();
 
+        StartCoroutine(UpdatePath());
+        m_dead += objRL.DroplootingCoin;
     }
 
     // Update is called once per frame
@@ -178,6 +182,21 @@ public class Monster : Entity
         #endregion
         DetectingUnits(curState);
         DistanceChangeState(distance,hasTarget);
+        if(hp <= 0)
+        {
+            isdead = true;
+            hp = 0.1f;
+        }
+        OnDead(isdead);
+    }
 
+    public override void OnDead(bool d)
+    {
+        if (!d)
+            return;
+
+        Destroy(this.gameObject, 0.3f);
+        m_dead();
+        isdead = true;
     }
 }

@@ -26,14 +26,35 @@ public class RandomLootingObject : MonoBehaviour
 
     private void Start()
     {
+        /*
         //dropTarget.OnDead += (dropObjects, dropRates) => DropItems(dropObjects, dropRates);
-        AddItemList1(dic_dropItemRate);
-        AddCoinList(dic_dropCoinNum);
-        RandomLooting(list_Item, sumRate);
-        RandomPosDrop(range_drop, lootSelectionObj);
-        SpawnCoinList(list_coin);
+        //AddItemList1(dic_dropItemRate);
+        //AddCoinList(dic_dropCoinNum);
+        //RandomLooting(list_Item, sumRate);
+        //RandomPosDrop(range_drop, lootSelectionObj);
+        //SpawnCoinList(list_coin);
+        */
+        //DroplootingItem();
+        //DroplootingCoin();
     }
 
+
+    public void DroplootingItem()
+    {
+        AddItemList1(dic_dropItemRate);
+        for (int i = 0; i < num_Itemdrop; i++)
+        {
+            RandomLooting(list_Item, sumRate);
+        }
+
+    }
+
+    public void DroplootingCoin()
+    {
+        AddCoinList(dic_dropCoinNum);
+        SpawnCoinList(list_coin);
+
+    }
 
     void AddItemList0(List<GameObject> d_Objects, List<int> d_Rates)
     {
@@ -100,6 +121,7 @@ public class RandomLootingObject : MonoBehaviour
                 lootSelectionObj = dic_dropItemRate.Values.Where(obj => obj.name == dropItemlist[i]).SingleOrDefault();
             }
         }
+        RandomPosDrop(range_drop, lootSelectionObj);
     }
 
     void RandomPosDrop(float r,GameObject obj)

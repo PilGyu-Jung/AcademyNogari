@@ -521,7 +521,7 @@ MonoBehaviour:
     - Key: 1
       Value: {fileID: 6281404950786470597, guid: 47171f77e4ad9274190e22bd57d6c236, type: 3}
   targetnum: 0
-  num_Itemdrop: 0
+  num_Itemdrop: 2
   range_drop: 2.79
   lootSelectionObj: {fileID: 0}
   lootSelectionCoin: {fileID: 0}

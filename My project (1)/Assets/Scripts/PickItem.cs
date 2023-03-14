@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class PickItem : PickObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public enum ItemType { CONSUME, BUFF, EQUIP }
+    public ItemType iType;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
