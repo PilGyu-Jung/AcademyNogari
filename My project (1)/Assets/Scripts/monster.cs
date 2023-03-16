@@ -45,6 +45,7 @@ public class Monster : Entity
             monsterAgent.autoBraking = false;
             monsterAgent.speed = speed_Walk;
             monsterAgent.isStopped = false;
+            hasTarget = false;
             isattack = false;
             isrun = false;
 
@@ -81,7 +82,7 @@ public class Monster : Entity
 
             isattack = true;
             isrun = false;
-            monsterAttack(isattack);
+            //monsterAttack(isattack);
         }
         else
         {
@@ -89,8 +90,27 @@ public class Monster : Entity
         }
     }
 
+    IEnumerator MonsterDead()
+    {
+        float t = .25f;
+        WaitForSeconds ws = new WaitForSeconds(t);
 
-    IEnumerator attackCoroutine(float time)
+        while(true)
+        {
+            yield return ws;
+            if(isdead)
+            {
+                m_dead();
+                StopCoroutine(MonsterDead());
+                StopCoroutine(UpdatePath());
+
+                Destroy(this.gameObject,0.3f);
+                break;
+            }
+        }
+    }
+
+    IEnumerator AttackCoroutine(float time)
     {
         WaitForSeconds ws = new WaitForSeconds(time);
         while(this.isattack)
@@ -98,6 +118,28 @@ public class Monster : Entity
             Debug.Log("attack!");
             yield return ws;
         }
+    }
+
+    IEnumerator Mons_Attack(float time)
+    {
+        float t = .25f;
+        WaitForSeconds ws = new WaitForSeconds(t);
+        WaitForSeconds ws2 = new WaitForSeconds(time);
+
+        while(!isdead)
+        {
+            if(curState == State.ATTACK)
+            {
+                //Debug.Log("Monster is attacking! target :{0}", transform_Target.GetComponentInParent<GameObject>().name);
+                yield return ws2;
+            }
+            else
+            {
+
+                yield return ws;
+            }
+        }
+
     }
 
     IEnumerator UpdatePath()
@@ -120,17 +162,16 @@ public class Monster : Entity
         }
     }
 
-    void monsterAttack(bool attacking)
-    {
-        if (!attacking)
-            return;
-        StartCoroutine(attackCoroutine(attackBetTime));
-    }
+    //void monsterAttack(bool attacking)
+    //{
+    //    if (!attacking)
+    //        return;
+    //    StartCoroutine(AttackCoroutine(attackBetTime));
+    //}
 
-    void DetectingUnits(State m_State)
+    void DetectingUnits()
     {
-        if (m_State == State.IDLE || m_State == State.CHASE)
-            return;
+
         cols 
             = Physics.OverlapSphere(transform.position, radius_Detect,m_targetLayer);
 
@@ -163,6 +204,7 @@ public class Monster : Entity
         objRL = GetComponent<RandomLootingObject>();
 
         StartCoroutine(UpdatePath());
+        StartCoroutine(MonsterDead());
         m_dead += objRL.DroplootingCoin;
     }
 
@@ -180,23 +222,11 @@ public class Monster : Entity
         //    isAttack = false;
         //}
         #endregion
-        DetectingUnits(curState);
+        DetectingUnits();
         DistanceChangeState(distance,hasTarget);
         if(hp <= 0)
         {
             isdead = true;
-            hp = 0.1f;
         }
-        OnDead(isdead);
-    }
-
-    public override void OnDead(bool d)
-    {
-        if (!d)
-            return;
-
-        Destroy(this.gameObject, 0.3f);
-        m_dead();
-        isdead = true;
     }
 }
