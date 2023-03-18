@@ -128,7 +128,7 @@ public class RandomLootingObject : MonoBehaviour
     {
         float randX = Random.Range(-r, r);
         float randZ = Random.Range(-r, r);
-        Vector3 randPos = new Vector3(randX, 0, randZ);
+        Vector3 randPos = new Vector3(randX, -0.5f, randZ);
         Instantiate(obj, (transform.position + randPos), Quaternion.identity);
     }
 

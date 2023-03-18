@@ -348,7 +348,7 @@ MonoBehaviour:
   speed_Walk: 3
   speed_Run: 5
   damage: 0
-  attackBetTime: 0
+  attackBetTime: 1
   isdead: 0
   isattack: 0
   isrun: 0

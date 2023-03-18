@@ -82,7 +82,6 @@ public class Monster : Entity
 
             isattack = true;
             isrun = false;
-            //monsterAttack(isattack);
         }
         else
         {
@@ -110,16 +109,6 @@ public class Monster : Entity
         }
     }
 
-    IEnumerator AttackCoroutine(float time)
-    {
-        WaitForSeconds ws = new WaitForSeconds(time);
-        while(this.isattack)
-        {
-            Debug.Log("attack!");
-            yield return ws;
-        }
-    }
-
     IEnumerator Mons_Attack(float time)
     {
         float t = .25f;
@@ -130,12 +119,11 @@ public class Monster : Entity
         {
             if(curState == State.ATTACK)
             {
-                //Debug.Log("Monster is attacking! target :{0}", transform_Target.GetComponentInParent<GameObject>().name);
+                Debug.Log("Monster Attack!");
                 yield return ws2;
             }
             else
             {
-
                 yield return ws;
             }
         }
@@ -162,12 +150,6 @@ public class Monster : Entity
         }
     }
 
-    //void monsterAttack(bool attacking)
-    //{
-    //    if (!attacking)
-    //        return;
-    //    StartCoroutine(AttackCoroutine(attackBetTime));
-    //}
 
     void DetectingUnits()
     {
@@ -205,23 +187,13 @@ public class Monster : Entity
 
         StartCoroutine(UpdatePath());
         StartCoroutine(MonsterDead());
+        StartCoroutine(Mons_Attack(attackBetTime));
         m_dead += objRL.DroplootingCoin;
     }
 
     // Update is called once per frame
     void Update()   
     {
-        #region attackCoroutineTest
-        //if(Input.GetKeyDown(KeyCode.A))
-        //{
-        //    isAttack = true;
-        //    monsterAttack(isAttack);
-        //}
-        //else if(Input.GetKeyUp(KeyCode.A))
-        //{
-        //    isAttack = false;
-        //}
-        #endregion
         DetectingUnits();
         DistanceChangeState(distance,hasTarget);
         if(hp <= 0)
