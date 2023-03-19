@@ -36,18 +36,19 @@ public class Contruction_DragAndDrop : MonoBehaviour
 
                 objToPlace.transform.position = new Vector3(posX, lastPosY, posZ);
             }
-            else
-            {
-                isDragging = false;
-            }
-
-            if(isDragging)
-            {
-                rend.material = matGrid;
-            }else if (!isDragging)
-            {
-                rend.material = matDefault;
-            }
         }
+        else
+        {
+            isDragging = false;
+        }
+        if (isDragging)
+        {
+            rend.material = matGrid;
+        }
+        else if (!isDragging)
+        {
+            rend.material = matDefault;
+        }
+
     }
 }

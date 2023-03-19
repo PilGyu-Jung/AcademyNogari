@@ -10,7 +10,7 @@ public class PlaceObjectOnGrid : MonoBehaviour
     public Transform onMousePrefab;
 
     public Vector3 smoothMousePosition;
-    Vector3 mousePosition;
+    public Vector3 mousePosition;
 
     [SerializeField] int height;
     [SerializeField] int width;
@@ -44,6 +44,7 @@ public class PlaceObjectOnGrid : MonoBehaviour
                 Transform obj = Instantiate(gridCellPrefab, worldPosition, Quaternion.identity);
                 obj.name = "Cell [" + i + "," + j + "]";
                 nodes[i, j] = new Node(true, worldPosition, obj);
+                obj.transform.parent = gameObject.transform;
             }
         }
     }

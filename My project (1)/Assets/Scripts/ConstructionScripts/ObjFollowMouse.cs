@@ -17,8 +17,7 @@ public class ObjFollowMouse : MonoBehaviour
     {
         if(!isOnGrid)
         {
-            transform.position = placeObjectOnGrid.smoothMousePosition + new Vector3(0, 0.5f, 0);
-
+            transform.position = placeObjectOnGrid.mousePosition + new Vector3(0, 0.5f, 0);
         }
     }
 
