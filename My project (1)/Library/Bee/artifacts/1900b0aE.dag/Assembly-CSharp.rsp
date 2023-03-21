@@ -346,6 +346,7 @@
 "Assets/Scripts/ConstructionScripts/CubePlacement.cs"
 "Assets/Scripts/ConstructionScripts/ObjFollowMouse.cs"
 "Assets/Scripts/ConstructionScripts/PlaceObjectOnGrid.cs"
+"Assets/Scripts/Construction_proto/GridSystem.cs"
 "Assets/Scripts/DraggableItem.cs"
 "Assets/Scripts/DraggableTab.cs"
 "Assets/Scripts/DropObjects.cs"

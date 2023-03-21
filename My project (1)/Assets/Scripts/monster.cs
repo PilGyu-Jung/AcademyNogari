@@ -103,7 +103,7 @@ public class Monster : Entity
                 StopCoroutine(MonsterDead());
                 StopCoroutine(UpdatePath());
 
-                Destroy(this.gameObject,0.3f);
+                Destroy(this.gameObject,0.5f);
                 break;
             }
         }
