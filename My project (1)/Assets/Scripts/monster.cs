@@ -102,6 +102,7 @@ public class Monster : Entity
                 m_dead();
                 StopCoroutine(MonsterDead());
                 StopCoroutine(UpdatePath());
+                StopCoroutine(Mons_Attack(attackBetTime));
 
                 Destroy(this.gameObject,0.5f);
                 break;

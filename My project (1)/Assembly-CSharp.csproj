@@ -120,6 +120,8 @@
     <Compile Include="Assets\Scripts\ConstructionScripts\Contruction_DragAndDrop.cs" />
     <Compile Include="Assets\Scripts\PickItem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
+    <Compile Include="Assets\Scripts\Attack\AttackType.cs" />
+    <Compile Include="Assets\Scripts\Attack\Att_Projectile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

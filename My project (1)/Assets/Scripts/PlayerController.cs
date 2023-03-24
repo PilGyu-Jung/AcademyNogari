@@ -16,8 +16,8 @@ public class PlayerController : Entity
 
     public MeleeWeapon weapon_melee;
     public GameObject Playermodel;
-    public enum AttackType{ MELEE,PROJECTILE,HITSCAN };
-    public AttackType attackType;
+    public enum AttType{ MELEE,PROJECTILE,HITSCAN };
+    public AttType attackType;
 
     float origin_recovery_Stamina;
     float origin_decrease_Stamina;
@@ -171,17 +171,17 @@ public class PlayerController : Entity
         Playermodel.transform.LookAt(lookPoint);
     }
 
-    void PlayerAttack(AttackType type)
+    void PlayerAttack(AttType type)
     { // 공격 타입에 따라서 다른 공격 코루틴이 실행됨.
         switch (type)
         {
-            case AttackType.MELEE:
+            case AttType.MELEE:
                 StartCoroutine(coroutineA);
                 break;
-            case AttackType.PROJECTILE:
+            case AttType.PROJECTILE:
 
                 break;
-            case AttackType.HITSCAN:
+            case AttType.HITSCAN:
 
                 break;
         }

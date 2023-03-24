@@ -9,7 +9,7 @@ public class Foothold_Construction : MonoBehaviour
     GridSystem gridSys;
     public Image ui_Construction;
     public Transform building1;
-    public GameObject Grid;
+    public GameObject gridObject;
 
     private void OnTriggerStay(Collider other)
     {
@@ -17,6 +17,7 @@ public class Foothold_Construction : MonoBehaviour
         {
             cameraHolder.seePlayer = false;
             ui_Construction.gameObject.SetActive(true);
+            Camera.main.cullingMask |= 1 << LayerMask.NameToLayer("Grid");
         }
     }
     private void OnTriggerExit(Collider other)
@@ -25,6 +26,7 @@ public class Foothold_Construction : MonoBehaviour
         {
             cameraHolder.seePlayer = true;
             ui_Construction.gameObject.SetActive(false);
+            Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("Grid"));
 
         }
 
