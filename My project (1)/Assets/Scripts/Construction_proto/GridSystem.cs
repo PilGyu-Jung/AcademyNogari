@@ -39,11 +39,11 @@ public class GridSystem : MonoBehaviour
         if(Physics.Raycast(ray,out enterHit, Mathf.Infinity, mask))
         {
             recent_mousePosition = enterHit.point;
-            grid_mousePosition.y = 0;
-            grid_mousePosition = Vector3Int.RoundToInt(recent_mousePosition / magnification_cell) * magnification_cell;
+            grid_mousePosition.y = 0.3f;
+            grid_mousePosition = Vector3Int.RoundToInt(recent_mousePosition / magnification_cell) * magnification_cell + new Vector3(0.78f,0,1.54f);
             foreach (var node in nodes)
             {
-                if (node.cellPosition == grid_mousePosition && node.isPlaceable)
+                if (Vector3.Distance(node.cellPosition, grid_mousePosition) <= 1.2f && node.isPlaceable)
                 {
                     if (Input.GetMouseButtonUp(0) && onMousePrefab != null)
                     {
