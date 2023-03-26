@@ -6,16 +6,17 @@ public class Bullet : MonoBehaviour
 {
     public float lifetime_bullet;
     public float rotateSpeed;
+    public float bulletForce;
 
     Rigidbody rb;
-    Att_Projectile att_prj;
+    //Att_Projectile att_prj;
     Transform targetTransform;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        att_prj = transform.parent.GetComponent<Att_Projectile>();
+        //att_prj = transform.parent.GetComponent<Att_Projectile>();
 
         Destroy(gameObject, lifetime_bullet);
     }
@@ -26,19 +27,21 @@ public class Bullet : MonoBehaviour
         
     }
 
-    void bulletmove()
+    public void bulletmove(Att_Projectile.ProjectileType type_proj)
     {
-        switch (att_prj.pType)
+        switch (type_proj)
         {
             case Att_Projectile.ProjectileType.LINEAR:
-                rb.AddForce(transform.forward * att_prj.bulletForce, ForceMode.Impulse);
+                rb.AddForce(transform.forward * bulletForce, ForceMode.Impulse);
+
                 break;
+
             case Att_Projectile.ProjectileType.NONLINE:
                 Vector3 direction = (Vector3)targetTransform.position - transform.position;
                 direction.Normalize();
                 Vector3 rotateAmount = Vector3.Cross(direction, transform.forward);
                 rb.angularVelocity = -rotateAmount * rotateSpeed;
-                rb.AddForce(transform.forward * att_prj.bulletForce, ForceMode.Impulse);
+                rb.AddForce(transform.forward * bulletForce, ForceMode.Impulse);
 
                 break;
             case Att_Projectile.ProjectileType.HOWITZER:
