@@ -15,6 +15,7 @@ public class Att_Projectile : AttackType
     public float lifeTime;
     [Header("NON-LINE")]
     public float rotateSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,33 +40,18 @@ public class Att_Projectile : AttackType
                 GameObject bullet = Instantiate(projectile, shotPos.position, transform.rotation);
                 bullet.transform.parent = transform;
                 Bullet bb = bullet.transform.GetComponent<Bullet>();
-                bb.bulletmove(pType);
-                //list_bullet.Add(Instantiate(projectile, shotPos.position, transform.rotation));
-                //foreach (var item in list_bullet)
-                //{
-                //    item.transform.parent = gameObject.transform;
-
-                //}
-                //for (int i = 0; i < list_bullet.Count; i++)
-                //{
-                //    list_bullet[i].transform.parent = gameObject.transform;
-                //}
-                //foreach (var items in list_bullet)
-                //{
-                //    list_proj_bullet.Add(items.transform.GetComponent<Bullet>());
-                //}
-                //for (int i = 0; i < list_bullet.Count; i++)
-                //{
-                //    list_proj_bullet[i] = list_bullet[i].GetComponent<Bullet>();
-                //}
+                bb.isnonLine = false;
+                //bb.bulletmove(pType);
+                bb.GetComponent<Rigidbody>().AddForce(bb.transform.forward * bb.bulletForce, ForceMode.Impulse);
                 
                 break;
 
             case ProjectileType.NONLINE:
-                //bullet = Instantiate(projectile, shotPos.position, transform.rotation);
-                //bullet.transform.parent = gameObject.transform;
-                //proj_bullet = bullet.GetComponent<Bullet>();
-                //proj_bullet.bulletmove(pType);
+                GameObject bullet2 = Instantiate(projectile, shotPos.position, transform.rotation);
+                bullet2.transform.parent = transform;
+                Bullet bb2 = bullet2.transform.GetComponent<Bullet>();
+                bb2.isnonLine = true;
+
 
 
                 break;
