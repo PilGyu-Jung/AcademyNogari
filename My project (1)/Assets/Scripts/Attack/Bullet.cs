@@ -10,6 +10,16 @@ public class Bullet : MonoBehaviour
     public float howitz_height;
 
     public bool isnonLine;
+    public bool ishowitzer;
+
+    float time;
+    [SerializeField]
+    float duration;
+    float lineT;
+    float heightT;
+    float rotateX_T;
+    float height;
+    float rotateX;
 
     Rigidbody rb;
     //Att_Projectile att_prj;
@@ -38,6 +48,8 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         nonLine_bulletmove(isnonLine);
+        howitzer_bulletmove(ishowitzer);
+        time += Time.deltaTime;
     }
 
     public void nonLine_bulletmove(bool nonLine)
@@ -54,6 +66,22 @@ public class Bullet : MonoBehaviour
     {
         if (!howitzer)
             return;
+        //transform.LookAt(new Vector3(endPosition.x, transform.position.y, endPosition.z));
+        
+        if(time < duration)
+        {
+            time += Time.deltaTime;
+            lineT = time / duration;
+            heightT = curve_posY.Evaluate(lineT);
+            rotateX_T = curve_rotX.Evaluate(lineT);
 
+            height = Mathf.Lerp(0.0f, howitz_height, heightT);
+            rotateX = Mathf.Lerp(howitz_height, 0f, rotateX_T);
+
+            transform.position = Vector3.Lerp(startPosition, endPosition, lineT) + new Vector3(0f, height, 0f);
+            //transform.LookAt(new Vector3(endPosition.x, transform.position.y -rotateX, endPosition.z));
+            transform.LookAt(new Vector3(endPosition.x, endPosition.y - rotateX, endPosition.z));
+
+        }
     }
 }

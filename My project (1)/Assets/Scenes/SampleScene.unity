@@ -1058,7 +1058,7 @@ MonoBehaviour:
   attkType: 2
   projectile: {fileID: 1442664871037314214, guid: daa16163741410d4fb8fb6cbf9cd75c4, type: 3}
   shotPos: {fileID: 736778140}
-  pType: 1
+  pType: 2
   targetPos: {fileID: 0}
   lifeTime: 0.5
   rotateSpeed: 0

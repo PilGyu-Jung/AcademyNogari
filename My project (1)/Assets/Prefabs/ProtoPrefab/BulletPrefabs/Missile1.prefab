@@ -76,11 +76,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2be41d3ebc5974bb4396612d6147c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime_bullet: 0.5
+  lifetime_bullet: 2
   rotateSpeed: 100
   bulletForce: 20
-  howitz_height: 0
+  howitz_height: 7
   isnonLine: 0
+  ishowitzer: 0
+  duration: 3
   curve_posY:
     serializedVersion: 2
     m_Curve:
@@ -127,19 +129,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0039367676
-      value: -0.3037796
-      inSlope: 0.59891295
-      outSlope: 0.59891295
+      time: 0
+      value: 0.99765015
+      inSlope: -0.994276
+      outSlope: -0.994276
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.0019531
-      value: 0.2939453
-      inSlope: 0.59891295
-      outSlope: 0.59891295
+      time: 1.001199
+      value: 0.0021820068
+      inSlope: -0.994276
+      outSlope: -0.994276
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

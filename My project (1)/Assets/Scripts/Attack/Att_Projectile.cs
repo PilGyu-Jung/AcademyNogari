@@ -56,6 +56,10 @@ public class Att_Projectile : AttackType
 
                 break;
             case ProjectileType.HOWITZER:
+                GameObject bullet3 = Instantiate(projectile, shotPos.position, transform.rotation);
+                bullet3.transform.parent = transform;
+                Bullet bb3 = bullet3.transform.GetComponent<Bullet>();
+                bb3.ishowitzer = true;
 
                 break;
         }
