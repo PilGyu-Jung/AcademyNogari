@@ -17,7 +17,10 @@ public class Bullet : MonoBehaviour
     Vector3 startPosition;
     Vector3 endPosition;
     Vector3 middlePosition;
-
+    [SerializeField]
+    AnimationCurve curve_posY;
+    [SerializeField]
+    AnimationCurve curve_rotX;
     // Start is called before the first frame update
     void Start()
     {
