@@ -49,7 +49,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 96
   m_CollisionDetection: 0
 --- !u!135 &1793173887480681422
 SphereCollider:
@@ -83,6 +83,8 @@ MonoBehaviour:
   isnonLine: 0
   ishowitzer: 0
   duration: 3
+  startPosition: {x: 0, y: 0, z: 0}
+  endPosition: {x: 0, y: 0, z: 0}
   curve_posY:
     serializedVersion: 2
     m_Curve:
@@ -130,18 +132,27 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.99765015
-      inSlope: -0.994276
-      outSlope: -0.994276
+      value: -0.00016403198
+      inSlope: 2.413053
+      outSlope: 2.413053
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
+      time: 0.25551248
+      value: 0.61640114
+      inSlope: 0.9201522
+      outSlope: 0.9201522
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.28241402
+      outWeight: 0.07552516
+    - serializedVersion: 3
       time: 1.001199
-      value: 0.0021820068
-      inSlope: -0.994276
-      outSlope: -0.994276
+      value: 0.99998474
+      inSlope: 0.5144033
+      outSlope: 0.5144033
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

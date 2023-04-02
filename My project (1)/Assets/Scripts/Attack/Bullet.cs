@@ -24,7 +24,9 @@ public class Bullet : MonoBehaviour
     Rigidbody rb;
     //Att_Projectile att_prj;
     Transform targetTransform;
+    [SerializeField]
     Vector3 startPosition;
+    [SerializeField]
     Vector3 endPosition;
     Vector3 middlePosition;
     [SerializeField]
@@ -66,22 +68,22 @@ public class Bullet : MonoBehaviour
     {
         if (!howitzer)
             return;
-        //transform.LookAt(new Vector3(endPosition.x, transform.position.y, endPosition.z));
-        
-        if(time < duration)
+
+        if (time < duration) // time 이 duration 기간동안.
         {
             time += Time.deltaTime;
-            lineT = time / duration;
-            heightT = curve_posY.Evaluate(lineT);
+            lineT = time / duration; // lineT는 time을 duration 만큼 쪼갠다.
+            heightT = curve_posY.Evaluate(lineT); // 가로축이 시간인 posY 애니메이션 커브에 heightT 를 대입.
             rotateX_T = curve_rotX.Evaluate(lineT);
 
             height = Mathf.Lerp(0.0f, howitz_height, heightT);
-            rotateX = Mathf.Lerp(howitz_height, 0f, rotateX_T);
-
+            rotateX = Mathf.Lerp(howitz_height, 0f, rotateX_T); // 7 -> 0 
+            Debug.Log($"rotateX:{ rotateX} y pos:{ transform.position.y}");
             transform.position = Vector3.Lerp(startPosition, endPosition, lineT) + new Vector3(0f, height, 0f);
-            //transform.LookAt(new Vector3(endPosition.x, transform.position.y -rotateX, endPosition.z));
-            transform.LookAt(new Vector3(endPosition.x, endPosition.y - rotateX, endPosition.z));
+            transform.LookAt(new Vector3(endPosition.x, endPosition.y + rotateX - 0.5f, endPosition.z));
 
         }
+        else // duration 이 끝나면 endPosition 에서 멈춤.
+            transform.position = endPosition;
     }
 }
