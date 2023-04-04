@@ -77,10 +77,11 @@ public class Bullet : MonoBehaviour
             rotateX_T = curve_rotX.Evaluate(lineT);
 
             height = Mathf.Lerp(0.0f, howitz_height, heightT);
-            rotateX = Mathf.Lerp(howitz_height, 0f, rotateX_T); // 7 -> 0 
-            Debug.Log($"rotateX:{ rotateX} y pos:{ transform.position.y}");
+            rotateX = Mathf.Lerp(3 * howitz_height, 0f, rotateX_T); // 미사일의 포물선 각도 변화.
+
+            //Debug.Log($"rotateX:{ rotateX} y pos:{ transform.position.y}");
             transform.position = Vector3.Lerp(startPosition, endPosition, lineT) + new Vector3(0f, height, 0f);
-            transform.LookAt(new Vector3(endPosition.x, endPosition.y + rotateX - 0.5f, endPosition.z));
+            transform.LookAt(new Vector3(endPosition.x, endPosition.y + rotateX - 0.2f, endPosition.z));
 
         }
         else // duration 이 끝나면 endPosition 에서 멈춤.
