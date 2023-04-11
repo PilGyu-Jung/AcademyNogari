@@ -9,8 +9,12 @@ public class Entity : MonoBehaviour
 
     public Weapon hitWeapon;
     public Entity hitEntity;
+    public Renderer baseRenderer;
+
+
     GameObject findParent;
     RandomLootingObject randomLtObj;
+
     //public float maxHP;
     //public float hp { 
     //    get 
@@ -45,6 +49,11 @@ public class Entity : MonoBehaviour
     public bool isdead;
     public bool isattack;
     public bool isrun;
+
+    private void Awake()
+    {
+        baseRenderer = GetComponent<Renderer>();
+    }
 
     public void ApplyDamage(Entity _target,float dmg)
     {

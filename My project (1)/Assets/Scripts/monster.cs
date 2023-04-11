@@ -19,6 +19,7 @@ public class Monster : Entity
 
 
     Collider[]          cols;
+    Barrack[]           barracks;
     NavMeshAgent        monsterAgent;
     Action              m_dead;
     RandomLootingObject objRL;
@@ -173,6 +174,36 @@ public class Monster : Entity
             }
         }
     }
+
+    void SetPosEnemybase()
+    {
+        if(monsterTeam == Team.A)
+        {
+            for (int i = 0; i < barracks.Length; i++)
+            {
+                if(barracks[i].team == Team.B)
+                {
+                    transform_EnemyBase = barracks[i].gameObject.transform;
+                }
+            }
+        }
+        else if(monsterTeam == Team.B)
+        {
+            for (int i = 0; i < barracks.Length; i++)
+            {
+                if (barracks[i].team == Team.A)
+                {
+                    transform_EnemyBase = barracks[i].gameObject.transform;
+                }
+            }
+
+        }
+        else
+        {
+            Debug.Log(gameObject.name + ": set EnemyBase Postion Error!");
+        }
+    }
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -190,6 +221,9 @@ public class Monster : Entity
         StartCoroutine(MonsterDead());
         StartCoroutine(Mons_Attack(attackBetTime));
         m_dead += objRL.DroplootingCoin;
+        barracks = FindObjectsOfType<Barrack>();
+
+        SetPosEnemybase();
     }
 
     // Update is called once per frame

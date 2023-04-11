@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7020221782912144055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.84, y: 0.09, z: 0}
-  m_LocalScale: {x: 0.71996, y: 0.33684325, z: 0.13725579}
+  m_LocalPosition: {x: -0.01, y: 0.09, z: 0.951}
+  m_LocalScale: {x: 0.18860072, y: 0.18474168, z: 0.8947979}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6449015706227165459}
@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 7413055778944885526}
   - component: {fileID: 7413055778944885527}
   - component: {fileID: 7413055778944885524}
+  - component: {fileID: 1055452281}
   m_Layer: 7
   m_Name: MonsterB_2
   m_TagString: Untagged
@@ -188,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitWeapon: {fileID: 0}
   hitEntity: {fileID: 0}
+  baseRenderer: {fileID: 0}
   hp: 3
   mp: 0
   speed_Walk: 3
@@ -307,6 +309,31 @@ MonoBehaviour:
   lootSelectionCoin: {fileID: 0}
   list_Item: []
   list_coin: []
+--- !u!114 &1055452281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7413055778944885518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5d12231957d1b4c93d421e141ab42e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackUser: {fileID: 0}
+  attackTarget: {fileID: 0}
+  attackPoint: {x: 0, y: 0, z: 0}
+  coolTime: 0
+  dmg_max: 0
+  dmg_min: 0
+  attkType: 2
+  projectile: {fileID: 1442664871037314214, guid: daa16163741410d4fb8fb6cbf9cd75c4, type: 3}
+  shotPos: {fileID: 6449015706227165459}
+  pType: 2
+  targetPos: {fileID: 0}
+  lifeTime: 0.5
+  rotateSpeed: 0
 --- !u!1 &8192411163535257133
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +358,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8192411163535257133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.073, y: 0, z: 0}
+  m_LocalPosition: {x: 0.073, y: 0, z: 0.084}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

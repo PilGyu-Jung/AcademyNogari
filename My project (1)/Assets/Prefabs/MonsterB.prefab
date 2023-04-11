@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitWeapon: {fileID: 0}
   hitEntity: {fileID: 0}
+  baseRenderer: {fileID: 0}
   hp: 3
   mp: 0
   speed_Walk: 3
@@ -119,7 +120,7 @@ MonoBehaviour:
   radius_Attack: 1.6
   m_targetLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 576
   curState: 0
   monsterTeam: 1
   transform_Target: {fileID: 0}
