@@ -40,7 +40,7 @@ public class GridSystem : MonoBehaviour
         {
             recent_mousePosition = enterHit.point;
             grid_mousePosition.y = 0.3f;
-            grid_mousePosition = Vector3Int.RoundToInt(recent_mousePosition / magnification_cell) * magnification_cell + new Vector3(0.78f,0,1.54f);
+            grid_mousePosition = Vector3Int.RoundToInt(recent_mousePosition / magnification_cell) * magnification_cell + new Vector3(1.94f,0,1.5f);
             foreach (var node in nodes)
             {
                 if (Vector3.Distance(node.cellPosition, grid_mousePosition) <= 1.2f && node.isPlaceable)

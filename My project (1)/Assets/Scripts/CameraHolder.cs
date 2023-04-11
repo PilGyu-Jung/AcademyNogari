@@ -10,16 +10,25 @@ public class CameraHolder : MonoBehaviour
     public Vector3 rotate_Construction;
     public Quaternion origin_rotate;
     public Camera cur_camera;
-    
+        
+    [SerializeField]
+    PlayerController p_controller;
+    GridSystem gridSys;
+
     [SerializeField]
     float distance_target;
+
     public bool seePlayer;
+    public bool seeConstruct;
 
     private void Start()
     {
         seePlayer = true;
+        seeConstruct = false;
         distance_target = Vector3.Distance(transform.position, targetTransform.position);
         //position_origin = transform.position;
+        p_controller = FindObjectOfType<PlayerController>();
+        gridSys = FindObjectOfType<GridSystem>();
     }
 
     private void Update()
@@ -35,7 +44,7 @@ public class CameraHolder : MonoBehaviour
         }
         else
         {
-            transform.position = constructPosition;
+            transform.position = new Vector3(gridSys.gameObject.transform.position.x + 13.17f, constructPosition.y, constructPosition.z);
             cur_camera.gameObject.transform.rotation = Quaternion.Euler(75.92f, -90, 0);
 
         }
