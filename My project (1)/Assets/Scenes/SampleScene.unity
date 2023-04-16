@@ -218,6 +218,7 @@ MonoBehaviour:
   p_controller: {fileID: 0}
   distance_target: 0
   seePlayer: 0
+  seeConstruct: 0
 --- !u!4 &37571144
 Transform:
   m_ObjectHideFlags: 0
@@ -630,7 +631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &567441843
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1525,7 +1526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1357670751
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2129,7 +2130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2036714725
 RectTransform:
   m_ObjectHideFlags: 0

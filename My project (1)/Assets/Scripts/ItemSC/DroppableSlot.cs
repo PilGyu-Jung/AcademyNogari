@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DroppableSlot : MonoBehaviour,IDropHandler
+public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler
 {
-    bool isequipSlot;
+    public bool isSlot_equip;
+    public bool isSlot_store;
+    public RectTransform popup;
+
     void IDropHandler.OnDrop(PointerEventData eventData)
     {
         if(transform.childCount == 0)
@@ -21,4 +24,11 @@ public class DroppableSlot : MonoBehaviour,IDropHandler
         }
     }
 
+    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
+    {
+        if(isSlot_store)
+        {
+
+        }
+    }
 }
