@@ -15,7 +15,7 @@ public class TabManager : MonoBehaviour
     public bool isOn_shop;
     public bool isOn_eqp;
 
-    public GameObject popup;
+    public RectTransform popup;
 
     public static TabManager Instance
     {

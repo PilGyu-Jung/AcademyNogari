@@ -153,15 +153,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemList:
-  - itemName: 
+  - itemName: "\uC0AC\uACFC"
+    itemDesc: "\uCCB4\uB825\uC744 50 \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4."
+    itemCode: 
     itemImage: {fileID: 21300000, guid: 5d9ba4e7d0964044ea54abe409d81dfd, type: 3}
     itemObject: {fileID: 1158636283}
     stackable: 1
-  - itemName: 
+  - itemName: "\uAC11\uC637"
+    itemDesc: "\uBC29\uC5B4\uB825\uC744 100 \uC62C\uB824\uC90D\uB2C8\uB2E4."
+    itemCode: 
     itemImage: {fileID: 21300000, guid: 2f1eaeeaad36ee5469eff7ff158f37ba, type: 3}
     itemObject: {fileID: 0}
     stackable: 0
-  - itemName: 
+  - itemName: "\uB3C4\uB07C"
+    itemDesc: "\uACF5\uACA9\uB825\uC744 70 \uC62C\uB824\uC90D\uB2C8\uB2E4."
+    itemCode: 
     itemImage: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
     itemObject: {fileID: 0}
     stackable: 0
