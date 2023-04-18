@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TabManager : MonoBehaviour
 {
+    private static TabManager instance = null;
+
     public GameObject inventory;
     public GameObject itemShop;
     public GameObject equipment;
@@ -13,10 +15,32 @@ public class TabManager : MonoBehaviour
     public bool isOn_shop;
     public bool isOn_eqp;
 
+    public GameObject popup;
+
+    public static TabManager Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (null == instance)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     // Update is called once per frame

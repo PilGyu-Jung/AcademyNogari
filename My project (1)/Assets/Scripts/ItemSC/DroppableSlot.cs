@@ -7,7 +7,7 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler
 {
     public bool isSlot_equip;
     public bool isSlot_store;
-    public RectTransform popup;
+    
 
     void IDropHandler.OnDrop(PointerEventData eventData)
     {
@@ -28,7 +28,7 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler
     {
         if(isSlot_store)
         {
-
+            TabManager.Instance.popup.transform.position = eventData.position;
         }
     }
 }
