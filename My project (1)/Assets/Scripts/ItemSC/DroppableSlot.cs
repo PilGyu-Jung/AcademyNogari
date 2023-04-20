@@ -12,17 +12,25 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
     public Items getItem;
 
     bool enterSlot = false;
+    public bool haveItem = false;
+
 
     public void SetItemInSlot(Items item)
     {
         //var itemobj= Instantiate(item, this.transform.position, Quaternion.identity);
         //itemobj.transform.SetParent(this.gameObject.transform);
+        haveItem = true;
+        itemContainer.contain_item = item;
         var item_container = Instantiate(itemContainer, this.transform.position, Quaternion.identity);
 
-        itemContainer.contain_item = item;
         getItem = item;
         item_container.transform.SetParent(this.transform);
+    }
 
+    public void removeItemInSlot()
+    {
+        getItem.clearItems();
+        haveItem = false;
     }
 
     void IDropHandler.OnDrop(PointerEventData eventData)
@@ -31,8 +39,10 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
         {
             GameObject dropped = eventData.pointerDrag;
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
-            draggableItem.parentAfterDrag = transform;
+            getItem = draggableItem.contain_item;
 
+            draggableItem.parentAfterDrag = transform;
+            //draggableItem.parentBeforeDrag.GetComponent<DroppableSlot>().removeItemInSlot();
         }
         else
         {

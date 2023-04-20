@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IEndDragHandler
 {
     public Transform parentAfterDrag;
+    public Transform parentBeforeDrag;
     public Image image_item;
     public Items contain_item;
     Color imageColor;
@@ -38,6 +39,7 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IEnd
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
         parentAfterDrag = transform.parent;
+        parentBeforeDrag = parentAfterDrag;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
         image_item.raycastTarget = false;

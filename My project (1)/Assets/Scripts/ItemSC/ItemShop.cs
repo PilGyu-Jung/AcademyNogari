@@ -10,15 +10,16 @@ public class ItemShop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //foreach (var item in GetComponentsInChildren<DroppableSlot>())
-        //{
-        //    List_ShopSlot.Add(item.gameObject);
-        //}
-        for (int i = 0; i < ItemManager.Instance.ItemList.Count; i++)
+        foreach (var item in GetComponentsInChildren<DroppableSlot>())
         {
-            transform.GetChild(1).GetChild(0).GetChild(i).GetComponent<DroppableSlot>().SetItemInSlot(ItemManager.Instance.ItemList[i]);
+            List_ShopSlot.Add(item.gameObject);
         }
-        //DisplayItems();
+        Debug.Log(ItemManager.Instance.ItemList.Count);
+        //for (int i = 0; i < ItemManager.Instance.ItemList.Count; i++)
+        //{
+        //    transform.GetChild(1).GetChild(0).GetChild(i).GetComponent<DroppableSlot>().SetItemInSlot(ItemManager.Instance.ItemList[i]);
+        //}
+        DisplayItems();
     }
 
     // Update is called once per frame
