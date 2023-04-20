@@ -9,6 +9,7 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
     public bool isSlot_equip;
     public bool isSlot_store;
     public DraggableItem itemContainer;
+    public Items getItem;
 
     bool enterSlot = false;
 
@@ -19,6 +20,7 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
         var item_container = Instantiate(itemContainer, this.transform.position, Quaternion.identity);
 
         itemContainer.contain_item = item;
+        getItem = item;
         item_container.transform.SetParent(this.transform);
 
     }
@@ -62,6 +64,11 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
         if(enterSlot)
         {
             TabManager.Instance.popup.gameObject.SetActive(true);
+
+            TabManager.Instance.text_name.text = getItem.itemName;
+            TabManager.Instance.text_expl.text = getItem.itemDesc;
+            TabManager.Instance.text_price.text = getItem.itemPrice.ToString();
+
             if ((Screen.height / 2) < Mathf.Abs(TabManager.Instance.popup.rect.height- TabManager.Instance.popup.anchoredPosition.y))
             {
                 TabManager.Instance.popup.pivot = new Vector2(0f, 0f);

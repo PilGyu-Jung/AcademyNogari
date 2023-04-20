@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TabManager : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class TabManager : MonoBehaviour
     public bool isOn_eqp;
 
     public RectTransform popup;
+
+    public TextMeshProUGUI text_name;
+    public TextMeshProUGUI text_expl;
+    public TextMeshProUGUI text_price;
 
     public static TabManager Instance
     {
@@ -32,6 +37,10 @@ public class TabManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        text_name = popup.GetChild(0).GetComponent<TextMeshProUGUI>();
+        text_expl = popup.GetChild(1).GetComponent<TextMeshProUGUI>();
+        text_price = popup.GetChild(2).GetComponent<TextMeshProUGUI>();
+
         if (null == instance)
         {
             instance = this;
