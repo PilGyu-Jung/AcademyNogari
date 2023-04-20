@@ -14,7 +14,7 @@ public class ItemShop : MonoBehaviour
         {
             List_ShopSlot.Add(item.gameObject);
         }
-        Debug.Log(ItemManager.Instance.ItemList.Count);
+        //Debug.Log(ItemManager.Instance.ItemList.Count);
         //for (int i = 0; i < ItemManager.Instance.ItemList.Count; i++)
         //{
         //    transform.GetChild(1).GetChild(0).GetChild(i).GetComponent<DroppableSlot>().SetItemInSlot(ItemManager.Instance.ItemList[i]);

@@ -14,6 +14,14 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
     bool enterSlot = false;
     public bool haveItem = false;
 
+    private void Update()
+    {
+        if(transform.childCount == 0)
+        {
+            getItem = null;
+            haveItem = false;
+        }
+    }
 
     public void SetItemInSlot(Items item)
     {
@@ -27,9 +35,14 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
         item_container.transform.SetParent(this.transform);
     }
 
-    public void removeItemInSlot()
+    public void ArrangeItemToSlot(DraggableItem dragItem)
     {
-        getItem.clearItems();
+        dragItem.contain_item = getItem;
+    }
+
+    public void RemoveItemInSlot(DroppableSlot targetSlot)
+    {
+        targetSlot.getItem.clearItems();
         haveItem = false;
     }
 
@@ -42,7 +55,10 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
             getItem = draggableItem.contain_item;
 
             draggableItem.parentAfterDrag = transform;
+            //draggableItem.parentAfterDrag.GetComponent<DroppableSlot>().SetItemInSlot(draggableItem.contain_item);
             //draggableItem.parentBeforeDrag.GetComponent<DroppableSlot>().removeItemInSlot();
+            ArrangeItemToSlot(draggableItem);
+            //RemoveItemInSlot(draggableItem.parentBeforeDrag.GetComponent<DroppableSlot>());
         }
         else
         {
@@ -52,7 +68,7 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        if(isSlot_store)
+        if(isSlot_store && transform.childCount >= 1)
         {
             enterSlot = true;
             TabManager.Instance.popup.gameObject.SetActive(true);
@@ -71,7 +87,7 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
 
     void IPointerMoveHandler.OnPointerMove(PointerEventData eventData)
     {
-        if(enterSlot)
+        if(enterSlot && transform.childCount > 0)
         {
             TabManager.Instance.popup.gameObject.SetActive(true);
 
@@ -91,7 +107,10 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
                 TabManager.Instance.popup.position = eventData.position;
 
             }
-
+        }
+        else
+        {
+            TabManager.Instance.popup.gameObject.SetActive(false);
         }
     }
 }
