@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Items
 {
-    [Header("--------<Shop_Information>---------")]
+    [Header("--------<Shop_Description>---------")]
     public string       itemName;
     public Sprite       itemImage;
     [TextArea]

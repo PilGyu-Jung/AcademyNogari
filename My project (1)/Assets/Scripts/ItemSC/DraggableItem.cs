@@ -8,6 +8,33 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IEnd
 {
     public Transform parentAfterDrag;
     public Image image_item;
+    public Items contain_item;
+    Color imageColor;
+    private void Start()
+    {
+        image_item = GetComponent<Image>();
+        //image_item.color = imageColor;
+        imageColor = image_item.color;
+    }
+    private void Update()
+    {
+        image_item.sprite = contain_item.itemImage;
+
+        if (contain_item != null)
+        {
+            imageColor.r = 1f;
+            imageColor.g = 1f;
+            imageColor.b = 1f;
+            imageColor.a = 1f;
+        }
+        else
+        {
+            imageColor.a = 0f;
+
+        }
+    }
+
+
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
         parentAfterDrag = transform.parent;

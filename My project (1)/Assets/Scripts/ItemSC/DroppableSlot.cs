@@ -8,8 +8,20 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
 
     public bool isSlot_equip;
     public bool isSlot_store;
+    public DraggableItem itemContainer;
 
     bool enterSlot = false;
+
+    public void SetItemInSlot(Items item)
+    {
+        //var itemobj= Instantiate(item, this.transform.position, Quaternion.identity);
+        //itemobj.transform.SetParent(this.gameObject.transform);
+        var item_container = Instantiate(itemContainer, this.transform.position, Quaternion.identity);
+
+        itemContainer.contain_item = item;
+        item_container.transform.SetParent(this.transform);
+
+    }
 
     void IDropHandler.OnDrop(PointerEventData eventData)
     {
