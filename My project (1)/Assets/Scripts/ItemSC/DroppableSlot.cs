@@ -10,14 +10,19 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
     public bool isSlot_store;
     public DraggableItem itemContainer;
     public Items getItem;
+    public DraggableItem curItem;
 
     bool enterSlot = false;
     public bool haveItem = false;
 
+
     private void Update()
     {
+        if(transform.childCount > 0)
+            curItem = transform.GetChild(0).GetComponent<DraggableItem>();
         if(transform.childCount == 0)
         {
+            curItem = null;
             getItem = null;
             haveItem = false;
         }
@@ -87,26 +92,43 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
 
     void IPointerMoveHandler.OnPointerMove(PointerEventData eventData)
     {
-        if(enterSlot && transform.childCount > 0)
+
+        if (enterSlot && transform.childCount == 1)
         {
-            TabManager.Instance.popup.gameObject.SetActive(true);
-
-            TabManager.Instance.text_name.text = getItem.itemName;
-            TabManager.Instance.text_expl.text = getItem.itemDesc;
-            TabManager.Instance.text_price.text = getItem.itemPrice.ToString();
-
-            if ((Screen.height / 2) < Mathf.Abs(TabManager.Instance.popup.rect.height- TabManager.Instance.popup.anchoredPosition.y))
+            if (curItem.dragging == true)
             {
-                TabManager.Instance.popup.pivot = new Vector2(0f, 0f);
-                TabManager.Instance.popup.position = eventData.position;
-
+                TabManager.Instance.popup.gameObject.SetActive(false);
             }
+
             else
             {
-                TabManager.Instance.popup.pivot = new Vector2(0f, 1f);
-                TabManager.Instance.popup.position = eventData.position;
+                TabManager.Instance.popup.gameObject.SetActive(true);
 
+                //TabManager.Instance.text_name.text = getItem.itemName;
+                //TabManager.Instance.text_expl.text = getItem.itemDesc;
+                //TabManager.Instance.text_price.text = getItem.itemPrice.ToString();
+
+                TabManager.Instance.text_name.text = curItem.contain_item.itemName;
+                TabManager.Instance.text_expl.text = curItem.contain_item.itemDesc;
+                TabManager.Instance.text_price.text = curItem.contain_item.itemPrice.ToString();
+
+                if ((Screen.height / 2) < Mathf.Abs(TabManager.Instance.popup.rect.height - TabManager.Instance.popup.anchoredPosition.y))
+                {
+                    TabManager.Instance.popup.pivot = new Vector2(0f, 0f);
+                    TabManager.Instance.popup.position = eventData.position;
+
+                }
+                else
+                {
+                    TabManager.Instance.popup.pivot = new Vector2(0f, 1f);
+                    TabManager.Instance.popup.position = eventData.position;
+
+                }
             }
+        }
+        else if(enterSlot && transform.childCount > 1)
+        {
+
         }
         else
         {

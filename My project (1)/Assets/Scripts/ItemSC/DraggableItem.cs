@@ -11,6 +11,10 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IEnd
     public Image image_item;
     public Items contain_item;
     Color imageColor;
+
+    public bool dragging;
+    public bool isStore;
+
     private void Start()
     {
         image_item = GetComponent<Image>();
@@ -38,6 +42,10 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IEnd
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
+        if (isStore)
+            return;
+
+        dragging = true;
         parentAfterDrag = transform.parent;
         parentBeforeDrag = parentAfterDrag;
         transform.SetParent(transform.root);
@@ -47,11 +55,18 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IEnd
 
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
+        if (isStore)
+            return;
+
         transform.position = Input.mousePosition;
     }
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
+        if (isStore)
+            return;
+
+        dragging = false;
         transform.SetParent(parentAfterDrag);
         image_item.raycastTarget = true;
     }

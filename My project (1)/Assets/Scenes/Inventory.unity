@@ -9057,6 +9057,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemContainer: {fileID: 8623607240523392767, guid: 957f79c0f6d2f634e937d145661e5837, type: 3}
   List_ShopSlot: []
+  Inventory_root: {fileID: 1872512470}
 --- !u!1001 &1757151467
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,7 +5,8 @@ using UnityEngine;
 public class ItemShop : MonoBehaviour
 {
     public GameObject itemContainer;
-    public List<GameObject> List_ShopSlot; 
+    public List<GameObject> List_ShopSlot;
+    public Transform Inventory_root;
 
     // Start is called before the first frame update
     void Start()
@@ -34,5 +35,10 @@ public class ItemShop : MonoBehaviour
         {
             List_ShopSlot[i].GetComponent<DroppableSlot>().SetItemInSlot(ItemManager.Instance.ItemList[i]);
         }
+    }
+
+    void BuyingItem()
+    {
+
     }
 }
