@@ -15,11 +15,13 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IEnd
     public bool dragging;
     public bool isStore;
 
+
     private void Start()
     {
         image_item = GetComponent<Image>();
         //image_item.color = imageColor;
         imageColor = image_item.color;
+
     }
     private void Update()
     {

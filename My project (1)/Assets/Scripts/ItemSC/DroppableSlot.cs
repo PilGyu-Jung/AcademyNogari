@@ -15,7 +15,21 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
     bool enterSlot = false;
     public bool haveItem = false;
 
-
+    private void Start()
+    {
+        if(isSlot_store)
+        {
+            if(transform.childCount > 0)
+            {
+                transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().raycastTarget = false;
+                transform.GetChild(0).GetComponent<DraggableItem>().isStore = true;
+            }
+            else
+            {
+                return;
+            }
+        }
+    }
     private void Update()
     {
         if(transform.childCount > 0)
@@ -53,6 +67,9 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
 
     void IDropHandler.OnDrop(PointerEventData eventData)
     {
+        if (isSlot_store)
+            return;
+
         if(transform.childCount == 0)
         {
             GameObject dropped = eventData.pointerDrag;

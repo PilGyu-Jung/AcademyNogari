@@ -114,3 +114,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff25b236f613f91479e64d7168f0494f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSlot_equip: 0
+  isSlot_store: 0
+  itemContainer: {fileID: 873225445882438798, guid: 957f79c0f6d2f634e937d145661e5837, type: 3}
+  getItem:
+    itemName: 
+    itemImage: {fileID: 0}
+    itemDesc: 
+    itemPrice: 0
+    itemCode: 
+    itemObject: {fileID: 0}
+    stackable: 0
+    durability: 0
+  curItem: {fileID: 0}
+  haveItem: 0
