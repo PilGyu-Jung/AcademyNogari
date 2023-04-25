@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ItemShop : MonoBehaviour
+public class ItemShop : MonoBehaviour,IDropHandler
 {
     public GameObject itemContainer;
     public List<Transform> List_shopChild;
@@ -59,4 +60,13 @@ public class ItemShop : MonoBehaviour
             OnClick_ShopSlot(slot.curItem.contain_item);
         }
     }
+
+    void IDropHandler.OnDrop(PointerEventData eventData)
+    {
+        //Debug.Log();
+        GameObject dropped = eventData.pointerDrag;
+        Debug.Log(dropped.GetComponent<DraggableItem>().contain_item.itemName);
+        Destroy(dropped);
+    }
+
 }

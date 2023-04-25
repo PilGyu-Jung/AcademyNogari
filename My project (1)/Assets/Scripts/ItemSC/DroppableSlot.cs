@@ -77,10 +77,7 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
             getItem = draggableItem.contain_item;
 
             draggableItem.parentAfterDrag = transform;
-            //draggableItem.parentAfterDrag.GetComponent<DroppableSlot>().SetItemInSlot(draggableItem.contain_item);
-            //draggableItem.parentBeforeDrag.GetComponent<DroppableSlot>().removeItemInSlot();
             ArrangeItemToSlot(draggableItem);
-            //RemoveItemInSlot(draggableItem.parentBeforeDrag.GetComponent<DroppableSlot>());
         }
         else
         {
