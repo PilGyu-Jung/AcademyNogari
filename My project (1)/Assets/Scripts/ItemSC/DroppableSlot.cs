@@ -83,6 +83,7 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
         {
             
         }
+
     }
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
