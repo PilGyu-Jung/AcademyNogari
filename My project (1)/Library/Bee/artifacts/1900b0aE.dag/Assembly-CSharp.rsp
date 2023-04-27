@@ -359,6 +359,7 @@
 "Assets/Scripts/ItemSC/DraggableTab.cs"
 "Assets/Scripts/ItemSC/DropObjects.cs"
 "Assets/Scripts/ItemSC/DroppableSlot.cs"
+"Assets/Scripts/ItemSC/EquipmentSlot.cs"
 "Assets/Scripts/ItemSC/G_Item.cs"
 "Assets/Scripts/ItemSC/G_ItemDateBase.cs"
 "Assets/Scripts/ItemSC/Inventory.cs"

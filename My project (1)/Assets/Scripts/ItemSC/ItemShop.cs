@@ -67,6 +67,9 @@ public class ItemShop : MonoBehaviour,IDropHandler
         GameObject dropped = eventData.pointerDrag;
         Debug.Log(dropped.GetComponent<DraggableItem>().contain_item.itemName);
         Destroy(dropped);
+        // selling 함수 추가.
+
+
 
         for (int i = 0; i < shopSlot_root.childCount; i++)
         {/* 드래그가 끝나면 상점창에 있는 '자식이 있는 Slot들' 을 골라 Button의 interactable, Image의 raycastTarget을 다시 true.*/

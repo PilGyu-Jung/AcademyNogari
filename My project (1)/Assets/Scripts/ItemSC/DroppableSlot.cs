@@ -54,9 +54,39 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
         item_container.transform.SetParent(this.transform);
     }
 
+    //public void SwapItems(DraggableItem itemA,DraggableItem itemB,DroppableSlot slotA,DroppableSlot slotB)
+    //{
+    //    DraggableItem temp = itemA;
+    //    itemA = itemB;
+    //    itemB = temp;
+
+    //    slotA.curItem = itemA;
+    //    slotB.curItem = itemB;
+    //    slotA.ArrangeItemToSlot(itemA);
+    //    slotB.ArrangeItemToSlot(itemB);
+
+    //}
+
+    public void SwapItems(Transform slotA, Transform slotB)
+    {
+        Items temp = slotA.GetComponent<DroppableSlot>().getItem;
+        slotA.GetComponent<DroppableSlot>().getItem
+            = slotB.GetComponent<DroppableSlot>().getItem;
+        slotB.GetComponent<DroppableSlot>().getItem = temp;
+
+        slotA.GetComponent<DroppableSlot>().ArrangeItemToSlot(slotA.GetChild(0).GetComponent<DraggableItem>());
+        ArrangeItemToSlot(slotB.GetChild(0).GetComponent<DraggableItem>());
+    }
+
     public void ArrangeItemToSlot(DraggableItem dragItem)
     {
         dragItem.contain_item = getItem;
+    }
+
+    public void ArrangeItemToSlot(Items item)
+    {
+        transform.GetChild(0).GetComponent<DraggableItem>().contain_item = item;
+        item = getItem;
     }
 
     public void RemoveItemInSlot(DroppableSlot targetSlot)
@@ -65,20 +95,33 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
         haveItem = false;
     }
 
-    void IDropHandler.OnDrop(PointerEventData eventData)
+    public virtual void OnDrop(PointerEventData eventData)
     {
         if (isSlot_store)
             return;
 
-        if(transform.childCount == 0)
+        if(!isSlot_equip)
         {
             GameObject dropped = eventData.pointerDrag;
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
-            if (draggableItem != null)
+
+            if (transform.childCount == 0)
             {
-                getItem = draggableItem.contain_item;
-                draggableItem.parentAfterDrag = transform;
-                ArrangeItemToSlot(draggableItem);
+                if (draggableItem != null)
+                {
+                    getItem = draggableItem.contain_item;
+                    draggableItem.parentAfterDrag = transform;
+                    ArrangeItemToSlot(draggableItem);
+                }
+                else
+                    return;
+            }
+            else
+            {
+                if(draggableItem != null)
+                {
+                    SwapItems(draggableItem.parentBeforeDrag, draggableItem.parentAfterDrag);
+                }
             }
         }
         else
