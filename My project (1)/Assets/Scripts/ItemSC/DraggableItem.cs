@@ -64,6 +64,7 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IEnd
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
         image_item.raycastTarget = false;
+
         for (int i = 0; i < buttons_shopslot.Count; i++)
         {/* 드래그를 시작하면 상점창에 있는 Button의 interactable, Image의 raycastTarget을 잠시 끈다.*/
             buttons_shopslot[i].GetComponent<UnityEngine.UI.Button>().interactable = false;
