@@ -54,28 +54,15 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
         item_container.transform.SetParent(this.transform);
     }
 
-    //public void SwapItems(DraggableItem itemA,DraggableItem itemB,DroppableSlot slotA,DroppableSlot slotB)
-    //{
-    //    DraggableItem temp = itemA;
-    //    itemA = itemB;
-    //    itemB = temp;
-
-    //    slotA.curItem = itemA;
-    //    slotB.curItem = itemB;
-    //    slotA.ArrangeItemToSlot(itemA);
-    //    slotB.ArrangeItemToSlot(itemB);
-
-    //}
 
     public void SwapItems(Transform slotA, Transform slotB)
-    {
-        Items temp = slotA.GetComponent<DroppableSlot>().getItem;
-        slotA.GetComponent<DroppableSlot>().getItem
-            = slotB.GetComponent<DroppableSlot>().getItem;
-        slotB.GetComponent<DroppableSlot>().getItem = temp;
-
-        slotA.GetComponent<DroppableSlot>().ArrangeItemToSlot(slotA.GetChild(0).GetComponent<DraggableItem>());
-        ArrangeItemToSlot(slotB.GetChild(0).GetComponent<DraggableItem>());
+    { // slotB의 첫번째 자식 아이템을 얻어온다.
+        Items temp = slotB.GetChild(0).GetComponent<DraggableItem>().contain_item;
+        slotA.GetComponent<DroppableSlot>().SetItemInSlot(temp);
+        slotA.GetComponent<DroppableSlot>().ArrangeItemToSlot(temp);
+        // Slot A에 temp 에 저장한 slotB 첫번째 자식 아이템을 넣는다.
+        Destroy(slotB.GetChild(0).gameObject);
+        //slotB의 첫번째 자식 아이템을 파괴한다.
     }
 
     public void ArrangeItemToSlot(DraggableItem dragItem)
@@ -117,8 +104,12 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
                     return;
             }
             else
-            {
-                if(draggableItem != null)
+            { // slot B에는 draggable Item 이 2개가 됐다.
+                getItem = draggableItem.contain_item;
+                draggableItem.parentAfterDrag = transform;
+                ArrangeItemToSlot(draggableItem);
+
+                if (draggableItem != null)
                 {
                     SwapItems(draggableItem.parentBeforeDrag, draggableItem.parentAfterDrag);
                 }
