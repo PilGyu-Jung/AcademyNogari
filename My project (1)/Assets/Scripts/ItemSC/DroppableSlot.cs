@@ -82,32 +82,40 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
         haveItem = false;
     }
 
+    void PutItem(DraggableItem dragItem)
+    {
+        if (dragItem != null)
+        {
+            getItem = dragItem.contain_item;
+            dragItem.parentAfterDrag = transform;
+            ArrangeItemToSlot(dragItem);
+        }
+        else
+            return;
+    }
+
     public virtual void OnDrop(PointerEventData eventData)
     {
         if (isSlot_store)
             return;
+        GameObject dropped = eventData.pointerDrag;
+        DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
 
-        if(!isSlot_equip)
+        if (!isSlot_equip)
         {
-            GameObject dropped = eventData.pointerDrag;
-            DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
 
             if (transform.childCount == 0)
             {
                 if (draggableItem != null)
                 {
-                    getItem = draggableItem.contain_item;
-                    draggableItem.parentAfterDrag = transform;
-                    ArrangeItemToSlot(draggableItem);
+                    PutItem(draggableItem);
                 }
                 else
                     return;
             }
             else
             { // slot B에는 draggable Item 이 2개가 됐다.
-                getItem = draggableItem.contain_item;
-                draggableItem.parentAfterDrag = transform;
-                ArrangeItemToSlot(draggableItem);
+                PutItem(draggableItem);
 
                 if (draggableItem != null)
                 {

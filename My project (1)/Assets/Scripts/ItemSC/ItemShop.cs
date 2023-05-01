@@ -5,10 +5,24 @@ using UnityEngine.EventSystems;
 
 public class ItemShop : MonoBehaviour,IDropHandler
 {
+    private static ItemShop instance = null;
+
     public GameObject itemContainer;
     public List<Transform> List_shopChild;
     public Transform shopSlot_root;
     public Transform Inventory_root;
+
+    public static ItemShop Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
 
     public System.Action<Items> OnClick_ShopSlot;
 
@@ -25,6 +39,16 @@ public class ItemShop : MonoBehaviour,IDropHandler
     // Start is called before the first frame update
     void Start()
     {
+
+        if (null == instance)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
 
         for (int i = 0; i < shopSlot_root.childCount; i++)
         {

@@ -28,7 +28,7 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IEnd
         //image_item.color = imageColor;
         imageColor = image_item.color;
 
-        root_ShopSlot = FindObjectOfType<ItemShop>().transform.GetChild(1).GetChild(0).transform;
+        root_ShopSlot = ItemShop.Instance.transform.GetChild(1).GetChild(0).transform;
         for (int i = 0; i < root_ShopSlot.childCount; i++)
         {
             buttons_shopslot.Add(root_ShopSlot.GetChild(i).transform);

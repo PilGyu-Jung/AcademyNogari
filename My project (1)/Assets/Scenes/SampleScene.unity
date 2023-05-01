@@ -154,23 +154,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemList:
   - itemName: "\uC0AC\uACFC"
-    itemDesc: "\uCCB4\uB825\uC744 50 \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4."
-    itemCode: 
     itemImage: {fileID: 21300000, guid: 5d9ba4e7d0964044ea54abe409d81dfd, type: 3}
+    itemDesc: "\uCCB4\uB825\uC744 50 \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4."
+    itemPrice: 0
+    itemCode: 
     itemObject: {fileID: 1158636283}
     stackable: 1
+    durability: 0
   - itemName: "\uAC11\uC637"
-    itemDesc: "\uBC29\uC5B4\uB825\uC744 100 \uC62C\uB824\uC90D\uB2C8\uB2E4."
-    itemCode: 
     itemImage: {fileID: 21300000, guid: 2f1eaeeaad36ee5469eff7ff158f37ba, type: 3}
-    itemObject: {fileID: 0}
-    stackable: 0
-  - itemName: "\uB3C4\uB07C"
-    itemDesc: "\uACF5\uACA9\uB825\uC744 70 \uC62C\uB824\uC90D\uB2C8\uB2E4."
+    itemDesc: "\uBC29\uC5B4\uB825\uC744 100 \uC62C\uB824\uC90D\uB2C8\uB2E4."
+    itemPrice: 0
     itemCode: 
-    itemImage: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
     itemObject: {fileID: 0}
     stackable: 0
+    durability: 0
+  - itemName: "\uB3C4\uB07C"
+    itemImage: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
+    itemDesc: "\uACF5\uACA9\uB825\uC744 70 \uC62C\uB824\uC90D\uB2C8\uB2E4."
+    itemPrice: 0
+    itemCode: 
+    itemObject: {fileID: 0}
+    stackable: 0
+    durability: 0
 --- !u!4 &35276656
 Transform:
   m_ObjectHideFlags: 0
@@ -1683,7 +1689,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3f28b869751bfed45b8fb2b0e8d95a53, type: 2}
+  - {fileID: 2100000, guid: 462da28bd7a9fd64885e6c63c814a293, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

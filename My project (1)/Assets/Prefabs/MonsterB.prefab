@@ -205,9 +205,9 @@ MonoBehaviour:
   dic_dropCoinNum:
     array:
     - Key: 3
-      Value: {fileID: 0}
+      Value: {fileID: 4168045853067708199, guid: e66fd447cf6c08740ba4bfe31a75b526, type: 3}
     - Key: 1
-      Value: {fileID: 0}
+      Value: {fileID: 2197398525060358867, guid: 4324aa498ab51c44e8147b6443ad498e, type: 3}
   dic_dropItemRate:
     array:
     - Key: 3
