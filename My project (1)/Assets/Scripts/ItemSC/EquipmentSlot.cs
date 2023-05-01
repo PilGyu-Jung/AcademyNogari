@@ -49,23 +49,23 @@ public class EquipmentSlot : DroppableSlot
 
                 break;
         }
-        if(transform.childCount > 1)
-        {
+    }
 
-        }
-        else
+    // Update is called once per frame
+    void Update()
+    {
+        if (transform.childCount > 1)
+            curItem = transform.GetChild(1).GetComponent<DraggableItem>();
+        if (transform.childCount == 1)
         {
-
+            curItem = null;
+            getItem = null;
+            haveItem = false;
         }
     }
 
     public override void OnDrop(PointerEventData eventData)
     {
-        
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.OnDrop(eventData);
     }
 }

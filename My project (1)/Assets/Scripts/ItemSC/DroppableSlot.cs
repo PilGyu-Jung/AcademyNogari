@@ -55,14 +55,29 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
     }
 
 
-    public void SwapItems(Transform slotA, Transform slotB)
+    public void SwapItems(Transform slotA, Transform slotB,bool isEquip)
     { // slotB의 첫번째 자식 아이템을 얻어온다.
-        Items temp = slotB.GetChild(0).GetComponent<DraggableItem>().contain_item;
-        slotA.GetComponent<DroppableSlot>().SetItemInSlot(temp);
-        slotA.GetComponent<DroppableSlot>().ArrangeItemToSlot(temp);
-        // Slot A에 temp 에 저장한 slotB 첫번째 자식 아이템을 넣는다.
-        Destroy(slotB.GetChild(0).gameObject);
-        //slotB의 첫번째 자식 아이템을 파괴한다.
+        Items temp;
+        if(isEquip == false)
+        {
+            temp = slotB.GetChild(0).GetComponent<DraggableItem>().contain_item;
+            slotA.GetComponent<DroppableSlot>().SetItemInSlot(temp);
+            slotA.GetComponent<DroppableSlot>().ArrangeItemToSlot(temp);
+            // Slot A에 temp 에 저장한 slotB 첫번째 자식 아이템을 넣는다.
+            Destroy(slotB.GetChild(0).gameObject);
+            //slotB의 첫번째 자식 아이템을 파괴한다.
+
+        }
+        else
+        {
+            temp = slotB.GetChild(1).GetComponent<DraggableItem>().contain_item;
+            slotA.GetComponent<DroppableSlot>().SetItemInSlot(temp);
+            slotA.GetComponent<DroppableSlot>().ArrangeItemToSlot(temp);
+            // Slot A에 temp 에 저장한 slotB 첫번째 자식 아이템을 넣는다.
+            Destroy(slotB.GetChild(1).gameObject);
+            //slotB의 첫번째 자식 아이템을 파괴한다.
+
+        }
     }
 
     public void ArrangeItemToSlot(DraggableItem dragItem)
@@ -98,6 +113,7 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
     {
         if (isSlot_store)
             return;
+
         GameObject dropped = eventData.pointerDrag;
         DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
 
@@ -119,13 +135,32 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
 
                 if (draggableItem != null)
                 {
-                    SwapItems(draggableItem.parentBeforeDrag, draggableItem.parentAfterDrag);
+                    SwapItems(draggableItem.parentBeforeDrag, draggableItem.parentAfterDrag,false);
                 }
             }
         }
         else
         {
-            
+            if(transform.childCount <= 1)
+            {
+                if (draggableItem != null)
+                {
+                    PutItem(draggableItem);
+                }
+                else
+                    return;
+
+            }
+            else
+            { // slot B에는 draggable Item 이 2개가 됐다.
+                PutItem(draggableItem);
+
+                if (draggableItem != null)
+                {
+                    SwapItems(draggableItem.parentBeforeDrag, draggableItem.parentAfterDrag,true);
+                }
+            }
+
         }
 
     }
@@ -163,10 +198,6 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
             {
                 TabManager.Instance.popup.gameObject.SetActive(true);
 
-                //TabManager.Instance.text_name.text = getItem.itemName;
-                //TabManager.Instance.text_expl.text = getItem.itemDesc;
-                //TabManager.Instance.text_price.text = getItem.itemPrice.ToString();
-
                 TabManager.Instance.text_name.text = curItem.contain_item.itemName;
                 TabManager.Instance.text_expl.text = curItem.contain_item.itemDesc;
                 TabManager.Instance.text_price.text = curItem.contain_item.itemPrice.ToString();
@@ -184,10 +215,6 @@ public class DroppableSlot : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPo
 
                 }
             }
-        }
-        else if(enterSlot && transform.childCount > 1)
-        {
-
         }
         else
         {

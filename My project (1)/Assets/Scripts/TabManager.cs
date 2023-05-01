@@ -8,13 +8,17 @@ public class TabManager : MonoBehaviour
 {
     private static TabManager instance = null;
 
-    public GameObject inventory;
-    public GameObject itemShop;
-    public GameObject equipment;
+    public RectTransform inventory;
+    public RectTransform itemShop;
+    public RectTransform equipment;
 
     public bool isOn_inv;
     public bool isOn_shop;
     public bool isOn_eqp;
+
+    Vector2 inventory_transform_origin;
+    Vector2 itemShop_transform_origin;
+    Vector2 equipment_transform_origin;
 
     public RectTransform popup;
 
@@ -41,6 +45,11 @@ public class TabManager : MonoBehaviour
         text_expl = popup.GetChild(1).GetComponent<TextMeshProUGUI>();
         text_price = popup.GetChild(2).GetComponent<TextMeshProUGUI>();
 
+        inventory_transform_origin = inventory.anchoredPosition;
+        itemShop_transform_origin = itemShop.anchoredPosition;
+        equipment_transform_origin = equipment.anchoredPosition;
+
+
         if (null == instance)
         {
             instance = this;
@@ -62,6 +71,28 @@ public class TabManager : MonoBehaviour
 
     }
 
+    Vector2 WhichTabOriginV2(RectTransform whichTab)
+    {
+        if(whichTab == inventory)
+        {
+            return inventory_transform_origin;
+        }
+        else if(whichTab == itemShop)
+        {
+            return itemShop_transform_origin;
+        }
+        else if(whichTab == equipment)
+        {
+            return equipment_transform_origin;
+        }
+        else
+        {
+            Debug.Log("WhichTab Error!");
+            return new Vector2(0, 0);
+        }
+
+    }
+
     void InputTabKey()
     {
         if(Input.GetKeyDown(KeyCode.I))
@@ -78,12 +109,12 @@ public class TabManager : MonoBehaviour
         }
     }
 
-    void visualizeTab(GameObject tab,bool visual)
+    void visualizeTab(RectTransform tab,bool visual)
     {
         if (visual == true)
-            tab.SetActive(true);
+            tab.anchoredPosition = WhichTabOriginV2(tab);
         else
-            tab.SetActive(false);
+            tab.anchoredPosition = WhichTabOriginV2(tab) + new Vector2(0, 1300);
     }
 
     public void hideinvTab()
