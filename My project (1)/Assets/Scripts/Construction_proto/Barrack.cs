@@ -34,7 +34,7 @@ public class Barrack : Entity
 
     void Update()
     {
-            
+        coolT = LevelManager.Instance.currentLevel.termOfSpawn;
     }
 
     void ChangeToTeamColor(Entity target)
@@ -57,6 +57,12 @@ public class Barrack : Entity
     {
         list_unit.Add(UnitManager.Instance.unitList.Find(x => x.unit_code == code_unit).unit_prefab);
     }
+
+    void DeleteUnitInList(string code_unit)
+    {
+        list_unit.Remove(UnitManager.Instance.unitList.Find(x => x.unit_code == code_unit).unit_prefab);
+    }
+
 
     //void AddUnitsInList(string name_unit)
     //{

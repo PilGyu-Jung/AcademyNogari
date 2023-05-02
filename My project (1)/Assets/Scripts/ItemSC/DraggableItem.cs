@@ -9,7 +9,9 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IEnd
     public Transform parentAfterDrag;
     public Transform parentBeforeDrag;
 
+    [SerializeField]
     Transform root_ShopSlot;
+    [SerializeField]
     List<Transform> buttons_shopslot;
 
     public Image image_item;

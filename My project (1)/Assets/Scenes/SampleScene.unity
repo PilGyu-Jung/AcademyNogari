@@ -2155,29 +2155,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBarrack: {fileID: 567441847}
   currentStage:
-    num_Stage: 0
-    num_Levels: 0
-    levels: []
-  StageList:
-  - num_Stage: 0
-    num_Levels: 0
-    levels:
-    - num_spawns: 0
+    name_stage: 
+    list_Levels: []
+  currentLevel:
+    name_level: 
+    num_spawns: 0
+    termOfSpawn: 0
+    list_Monster: []
+    bossMonster: {fileID: 0}
+  levelClear: 0
+  num_Stage: 0
+  num_Level: 0
+  list_Stage:
+  - name_stage: 
+    list_Levels:
+    - name_level: 
+      num_spawns: 0
       termOfSpawn: 0
-      spawnMonster:
-      - monsterType:
-          array:
-          - Key: {fileID: 0}
-            Value: 0
-      - monsterType:
-          array: []
+      list_Monster: []
       bossMonster: {fileID: 0}
-  - num_Stage: 0
-    num_Levels: 0
-    levels: []
-  - num_Stage: 0
-    num_Levels: 0
-    levels: []
+    - name_level: 
+      num_spawns: 0
+      termOfSpawn: 0
+      list_Monster: []
+      bossMonster: {fileID: 0}
+    - name_level: 
+      num_spawns: 0
+      termOfSpawn: 0
+      list_Monster: []
+      bossMonster: {fileID: 0}
+  - name_stage: 
+    list_Levels:
+    - name_level: 
+      num_spawns: 0
+      termOfSpawn: 0
+      list_Monster: []
+      bossMonster: {fileID: 0}
+    - name_level: 
+      num_spawns: 0
+      termOfSpawn: 0
+      list_Monster: []
+      bossMonster: {fileID: 0}
+    - name_level: 
+      num_spawns: 0
+      termOfSpawn: 0
+      list_Monster: []
+      bossMonster: {fileID: 0}
+    - name_level: 
+      num_spawns: 0
+      termOfSpawn: 0
+      list_Monster: []
+      bossMonster: {fileID: 0}
+    - name_level: 
+      num_spawns: 0
+      termOfSpawn: 0
+      list_Monster: []
+      bossMonster: {fileID: 0}
 --- !u!4 &1747409869
 Transform:
   m_ObjectHideFlags: 0
