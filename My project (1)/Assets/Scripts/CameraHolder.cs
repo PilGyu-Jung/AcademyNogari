@@ -29,6 +29,7 @@ public class CameraHolder : MonoBehaviour
         //position_origin = transform.position;
         p_controller = FindObjectOfType<PlayerController>();
         gridSys = FindObjectOfType<GridSystem>();
+        cur_camera = Camera.main;
     }
 
     private void Update()

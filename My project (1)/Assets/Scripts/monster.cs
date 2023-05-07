@@ -35,6 +35,9 @@ public class Monster : Entity
     public Transform    transform_EnemyBase;
     public Entity       targetEntity;
 
+    GameObject t_hpbar;
+    UnityEngine.UI.Slider slider_HP;
+
     void DistanceChangeState(float d,bool nearTarget)
     {
         if (!nearTarget)
@@ -204,7 +207,6 @@ public class Monster : Entity
         }
     }
 
-    // Start is called before the first frame update
     private void Awake()
     {
         transform_Target = transform_EnemyBase;
@@ -212,6 +214,9 @@ public class Monster : Entity
     }
     void Start()
     {
+        t_hpbar = Instantiate(UnitManager.Instance.prefab_HpBar, transform.position, Quaternion.identity, UnitManager.Instance.canvas.transform as RectTransform);
+        slider_HP = t_hpbar.GetComponent<UnityEngine.UI.Slider>();
+
         isdead = false;
         hasTarget = false;
         monsterAgent = GetComponent<NavMeshAgent>();
@@ -234,6 +239,8 @@ public class Monster : Entity
         if(hp <= 0)
         {
             isdead = true;
+            slider_HP.value = hp;
         }
+        t_hpbar.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0f, UnitManager.Instance.height_hpBar, 0f));
     }
 }

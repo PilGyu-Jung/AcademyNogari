@@ -1378,6 +1378,9 @@ MonoBehaviour:
     unit_code: 00
     unit_image: {fileID: 0}
     unit_prefab: {fileID: 7413055778944885518, guid: 1457a1b8fc56eee40bf7081abc5d01b0, type: 3}
+  prefab_HpBar: {fileID: 7376933329069509891, guid: 2fa82d5cdb6c04c41b13afd94cdc23ef, type: 3}
+  canvas: {fileID: 847943332}
+  height_hpBar: 1.16
 --- !u!1 &1150016808
 GameObject:
   m_ObjectHideFlags: 0
