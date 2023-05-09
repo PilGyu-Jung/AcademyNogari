@@ -38,7 +38,9 @@ public class Entity : MonoBehaviour
     //    } 
     //}
     public float hp;
+    public float maxHP;
     public float mp;
+    public float maxMP;
 
     public float speed_Walk;
     public float speed_Run;

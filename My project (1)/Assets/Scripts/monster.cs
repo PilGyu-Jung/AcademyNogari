@@ -35,7 +35,8 @@ public class Monster : Entity
     public Transform    transform_EnemyBase;
     public Entity       targetEntity;
 
-    GameObject t_hpbar;
+    GameObject m_hpbar;
+    [SerializeField]
     UnityEngine.UI.Slider slider_HP;
 
     void DistanceChangeState(float d,bool nearTarget)
@@ -214,8 +215,11 @@ public class Monster : Entity
     }
     void Start()
     {
-        t_hpbar = Instantiate(UnitManager.Instance.prefab_HpBar, transform.position, Quaternion.identity, UnitManager.Instance.canvas.transform as RectTransform);
-        slider_HP = t_hpbar.GetComponent<UnityEngine.UI.Slider>();
+        maxHP = hp;
+        maxMP = mp;
+
+        m_hpbar = Instantiate(UnitManager.Instance.prefab_HpBar, transform.position, Quaternion.identity, UnitManager.Instance.canvas.transform as RectTransform);
+        slider_HP = m_hpbar.GetComponent<UnityEngine.UI.Slider>();
 
         isdead = false;
         hasTarget = false;
@@ -234,13 +238,19 @@ public class Monster : Entity
     // Update is called once per frame
     void Update()   
     {
-        DetectingUnits();
-        DistanceChangeState(distance,hasTarget);
-        if(hp <= 0)
+        slider_HP.value = (float)hp / (float)maxHP;
+
+        if (hp <= 0)
         {
             isdead = true;
-            slider_HP.value = hp;
+            Destroy(m_hpbar,0.1f);
         }
-        t_hpbar.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0f, UnitManager.Instance.height_hpBar, 0f));
+        else
+        {
+            DetectingUnits();
+            DistanceChangeState(distance, hasTarget);
+
+            m_hpbar.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0f, UnitManager.Instance.height_hpBar, 0f));
+        }
     }
 }
