@@ -6,6 +6,7 @@ public class ItemManager : MonoBehaviour
 {
     //[SerializeField]
     public List<Items> ItemList = new List<Items>();
+    public List<EquipItems> equipList = new List<EquipItems>();
 
     private static ItemManager instance = null;
 

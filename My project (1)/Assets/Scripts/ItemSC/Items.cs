@@ -15,6 +15,7 @@ public class Items
     public string       itemCode;
     public GameObject   itemObject;
     public bool         stackable;
+    public bool         isEquipItem;
     public int          durability;
 
     public void clearItems()
@@ -27,5 +28,14 @@ public class Items
         itemObject = null;
         stackable = false;
         durability = 0;
+    }
+
+    public bool EquipmentItem
+    {
+        get { return isEquipItem; }
+        set
+        {
+            isEquipItem = value;
+        }
     }
 }
