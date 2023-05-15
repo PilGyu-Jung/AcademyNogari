@@ -412,6 +412,7 @@
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/RandomLootingObject.cs"
 "Assets/Scripts/TabManager.cs"
+"Assets/Scripts/UI/AudioManager.cs"
 "Assets/Scripts/UI/Hero.cs"
 "Assets/Scripts/UI/HeroManager.cs"
 "Assets/Scripts/UI/HeroSelect.cs"
