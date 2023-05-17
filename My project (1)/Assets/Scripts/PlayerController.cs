@@ -18,6 +18,7 @@ public class PlayerController : Entity
     public GameObject Playermodel;
     public enum AttType{ MELEE,PROJECTILE,HITSCAN };
     public AttType attackType;
+    public AnimControl_Player anim_Player;
 
     float origin_recovery_Stamina;
     float origin_decrease_Stamina;
@@ -33,8 +34,15 @@ public class PlayerController : Entity
     Camera m_camera;
     Plane plane;
 
+    enum Player_Direction { UP,UP_RIGHT,RIGHT,RIGHT_DOWN,DOWN,DOWN_LEFT,LEFT,LEFT_UP};
+    
+    [SerializeField]
+    Player_Direction DirectionType;
+
     Vector3 lookPoint;
     Vector3 moveDirection;
+    Vector2 v2_hv;
+    float degree;
     IEnumerator coroutineA;
 
     private void Awake()
@@ -85,11 +93,16 @@ public class PlayerController : Entity
         changeRateStamina();
 
         if (h != 0 || v != 0)
+        {
             isMove = true;
+        }
         else
+        {
             isMove = false;
 
-        if(isrun && isMove && cur_stamina > 0 && !isrecoverSP)
+        }
+
+        if (isrun && isMove && cur_stamina > 0 && !isrecoverSP)
         {
             transform.Translate(moveDirection * speed_Run, Space.World);
         }
@@ -97,9 +110,63 @@ public class PlayerController : Entity
         {
             transform.Translate(moveDirection * speed_Walk, Space.World);
         }
+        WhichDirection(moveDirection);
+        anim_Player.Anim_moving(Mathf.Abs(Playermodel.transform.rotation.eulerAngles.y - degree), isMove);
 
     }
 
+    void WhichDirection(Vector3 dirV3)
+    {
+        if(dirV3 == new Vector3(1,0,0))
+        {
+            DirectionType = Player_Direction.RIGHT;
+            degree = 360f;
+        }
+        else if (dirV3 == new Vector3(-1, 0, 0))
+        {
+            DirectionType = Player_Direction.LEFT;
+            degree = 180f;
+        }
+        else if (dirV3 == new Vector3(0, 0, 1))
+        {
+            DirectionType = Player_Direction.UP;
+            degree = 90f;
+        }
+        else if (dirV3 == new Vector3(0, 0, -1))
+        {
+            DirectionType = Player_Direction.DOWN;
+            degree = 270f;
+        }
+        else if (Vector3.Distance(dirV3,new Vector3(0.71f, 0, 0.71f)) <= 0.1f)
+        {   
+            DirectionType = Player_Direction.UP_RIGHT;
+            degree = 45f;
+        }
+        else if (Vector3.Distance(dirV3, new Vector3(0.71f, 0, -0.71f)) <= 0.1f)
+        {
+            DirectionType = Player_Direction.RIGHT_DOWN;
+            degree = 135f;
+        }
+        else if (Vector3.Distance(dirV3, new Vector3(-0.71f, 0, -0.71f)) <= 0.1f)
+        {
+            DirectionType = Player_Direction.DOWN_LEFT;
+            degree = 225f;
+        }
+        else if (Vector3.Distance(dirV3, new Vector3(-0.71f, 0, 0.71f)) <= 0.1f)
+        {
+            DirectionType = Player_Direction.LEFT_UP;
+            degree = 315f;
+        }
+        else
+        {
+            degree = 0f;
+        }
+    }
+
+    void Anim_moving(float yAngle)
+    {
+        //if(yAngle - degree <= 45f || yAngle - degree >= 360f)
+    }
     void changeRateStamina()
     {
         // 스태미나 최대 최소일때 회복량 제한, 범위내일때 정상 회복량.
@@ -168,7 +235,8 @@ public class PlayerController : Entity
     }
     void focusPoint()
     { // 플레이어 오브젝트는 유지하고, 모델만 마우스 포인터쪽으로 회전.
-        Playermodel.transform.LookAt(lookPoint);
+        Playermodel.transform.LookAt(new Vector3(lookPoint.x, transform.position.y, lookPoint.z));
+        //Debug.Log(Playermodel.transform.rotation.eulerAngles.y);
     }
 
     void PlayerAttack(AttType type)
@@ -193,6 +261,7 @@ public class PlayerController : Entity
         while(true)
         {
             Debug.Log("Player Melee Attacking!");
+            anim_Player.Anim_attack(1);
             weapon_melee.attackbox.enabled = true;
             yield return new WaitForSeconds(.2f);
             weapon_melee.attackbox.enabled = false;
