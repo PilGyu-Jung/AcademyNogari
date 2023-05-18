@@ -7,6 +7,7 @@ using System;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Monster : Entity
 {
+    bool ismoving;
     public bool         hasTarget;
     public float        distance;
 
@@ -34,6 +35,7 @@ public class Monster : Entity
     public Transform    transform_Target;
     public Transform    transform_EnemyBase;
     public Entity       targetEntity;
+    public AnimControl_Unit anim_unit;
 
     GameObject m_hpbar;
     [SerializeField]
@@ -104,6 +106,7 @@ public class Monster : Entity
             yield return ws;
             if(isdead)
             {
+                ismoving = false;
                 m_dead();
                 StopCoroutine(MonsterDead());
                 StopCoroutine(UpdatePath());
@@ -126,6 +129,7 @@ public class Monster : Entity
             if(curState == State.ATTACK)
             {
                 Debug.Log("Monster Attack!");
+                anim_unit.Anim_attack();
                 yield return ws2;
             }
             else
@@ -223,6 +227,8 @@ public class Monster : Entity
 
         isdead = false;
         hasTarget = false;
+        ismoving = true;
+
         monsterAgent = GetComponent<NavMeshAgent>();
         objRL = GetComponent<RandomLootingObject>();
 
@@ -249,6 +255,7 @@ public class Monster : Entity
         {
             DetectingUnits();
             DistanceChangeState(distance, hasTarget);
+            anim_unit.Anim_moving(ismoving);
 
             m_hpbar.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0f, UnitManager.Instance.height_hpBar, 0f));
         }

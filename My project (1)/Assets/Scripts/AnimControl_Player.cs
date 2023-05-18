@@ -21,7 +21,10 @@ public class AnimControl_Player : MonoBehaviour
     public void Anim_moving(float _deg,bool ismove)
     {
         if (!ismove)
+        {
             animator.SetBool("isMove", false);
+            return;
+        }
 
         animator.SetBool("isMove", ismove);
         animator.SetFloat("Deg", _deg);
